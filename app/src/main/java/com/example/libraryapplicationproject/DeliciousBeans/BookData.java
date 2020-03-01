@@ -1,10 +1,17 @@
 package com.example.libraryapplicationproject.DeliciousBeans;
 
-public class bookData {
+public class BookData {
     public String bookName;
     public String bookAuthor;
-
-    public bookData(String bookName, String bookAuthor, String bookPublisher) {
+    public String bookPublisher;
+    /**
+     * @author yonis sheekh
+     * @since 2020-03-1
+     * @param bookName the name of the book
+     * @param bookAuthor the author of the book
+     * @param bookPublisher the publisher of the book
+     */
+    public BookData(String bookName, String bookAuthor, String bookPublisher) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookPublisher = bookPublisher;
@@ -34,5 +41,4 @@ public class bookData {
         this.bookPublisher = bookPublisher;
     }
 
-    public String bookPublisher;
 }
