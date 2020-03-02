@@ -107,4 +107,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /*
+           READ STATEMENTS
+     */
+
+    public BookData getBooks(int id){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        BookData book = null;
+        Cursor cursor = db.query(TABLE_BOOK, new String[]{BOOK_ID,
+                        COLUMN_NAME, COLUMN_AUTHOR, COLUMN_DESCRIPTION, COLUMN_WEBSITE}, BOOK_ID + "= ?",
+                new String[]{String.valueOf(id)}, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            book = new BookData(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3));
+        }
+        db.close();
+        return book;
+    }
+
+    public ArrayList<BookData> getAllBooks(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_BOOK ,
+                null);
+        ArrayList<BookData> books = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            books.add(new BookData(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)));
+        }
+        db.close();
+        return books;
+    }
+
 }
