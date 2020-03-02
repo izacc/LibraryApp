@@ -5,6 +5,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 
@@ -52,6 +54,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
 
+        BookData item = books.get(position);
+        holder.publisher.setText(item.getBookPublisher());
+        holder.name.setText(item.getBookName());
+        holder.author.setText(item.getBookAuthor());
+        holder.image.setImageResource(item.getBookImage());
+
+
     }
 
     /**
@@ -62,12 +71,22 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     @Override
     public int getItemCount() {
         //dont be stupid  and forget to change this Written by Yonis For Yonis
-        return 0;
+        //good job u didnt forget this time :D
+        return books.size();
     }
 
      class ViewHolder extends RecyclerView.ViewHolder{
+         protected TextView name;
+         protected ImageView image;
+         protected TextView author;
+         protected TextView publisher;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.name = itemView.findViewById(R.id.name);
+            this.image = itemView.findViewById(R.id.bookImage);
+            this.author = itemView.findViewById(R.id.author);
+            this.publisher = itemView.findViewById(R.id.publisher);
+
         }
     }
 }
