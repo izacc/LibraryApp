@@ -4,6 +4,8 @@ public class BookData {
     public String bookName;
     public String bookAuthor;
     public String bookPublisher;
+    public String bookDescription;
+    public String bookURL;
     public int bookImage;
 
     /**
@@ -19,6 +21,13 @@ public class BookData {
         this.bookAuthor = bookAuthor;
         this.bookPublisher = bookPublisher;
         this.bookImage =  bookImage;
+    }
+
+    public BookData(String bookName, String bookAuthor, String bookDescription, String bookURL) {
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookDescription = bookDescription;
+        this.bookURL =  bookURL;
     }
 
     public String getBookDescription() {return bookDescription;}
