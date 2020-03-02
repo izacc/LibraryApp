@@ -93,5 +93,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /*
+           CREATE STATEMENTS
+     */
+    public void addBook(BookData book){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, book.getBookName());
+        values.put(COLUMN_AUTHOR, book.getBookAuthor());
+        values.put(COLUMN_DESCRIPTION, book.getBookDescription());
+        values.put(COLUMN_WEBSITE, book.getBookURL());
+        db.insert(TABLE_BOOK, null, values);
+        db.close();
+    }
 
 }
