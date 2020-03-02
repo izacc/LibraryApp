@@ -111,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
            READ STATEMENTS
      */
 
-    public BookData getBooks(int id){
+    public BookData getBook(int id){
         SQLiteDatabase db  = this.getReadableDatabase();
         BookData book = null;
         Cursor cursor = db.query(TABLE_BOOK, new String[]{BOOK_ID,
@@ -153,5 +153,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(book)});
         db.close();
     }
+
 
 }
