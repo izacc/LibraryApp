@@ -2,4 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="topOfRecycler">20dp</dimen>
+    <dimen name="elevation">2dp</dimen>
+    <dimen name="TitleItemSize">20sp</dimen>
+    <dimen name="cardViewCornerRadius">15dp</dimen>
 </resources>
