@@ -144,5 +144,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return books;
     }
+    /*
+        Delete Statements
+     */
+    public void deleteLockerItem(Integer book){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LOCKER, BOOK_ID_FOREIGN + " = ?",
+                new String[]{String.valueOf(book)});
+        db.close();
+    }
 
 }
