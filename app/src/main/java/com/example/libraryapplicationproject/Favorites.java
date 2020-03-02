@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * @author yonis sheekh
+ * @author yonis sheekh, Izaac Lucas
  * @since 2020-03-1
  */
 public class Favorites extends Fragment {
