@@ -4,6 +4,8 @@ public class BookData {
     public String bookName;
     public String bookAuthor;
     public String bookPublisher;
+    public String bookDescription;
+    public String bookURL;
     /**
      * @author yonis sheekh
      * @since 2020-03-1
@@ -11,11 +13,20 @@ public class BookData {
      * @param bookAuthor the author of the book
      * @param bookPublisher the publisher of the book
      */
-    public BookData(String bookName, String bookAuthor, String bookPublisher) {
+    public BookData(String bookName, String bookAuthor, String bookDescription, String bookURL) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
-        this.bookPublisher = bookPublisher;
+        this.bookDescription = bookDescription;
+        this.bookURL = bookURL;
     }
+
+    public String getBookDescription() {return bookDescription;}
+
+    public void setBookDescription(String bookDescription) {this.bookDescription = bookDescription;}
+
+    public String getBookURL() {return bookURL;}
+
+    public void setBookURL(String bookURL) {this.bookURL = bookURL;}
 
     public String getBookName() {
         return bookName;
