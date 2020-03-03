@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Foreign keys
    */
 
-    public static final String BOOK_ID = "id";
+    public static final String BOOK_ID = "book_id";
     public static final String IMAGE_ID = "image_id";
 
     /*
@@ -63,19 +63,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Locker Table
      */
-    public static final String BOOK_ID_FOREIGN = "book_id";
     public static final String COLUMN_RATING = "rating";
     public static final String COLUMN_READ = "is_read";
 
 
     public static final String CREATE_BOOK_TABLE = "CREATE TABLE " +
-            TABLE_BOOK + " (" + BOOK_ID + " INTEGER PRIMARY KEY," +
+            TABLE_BOOK + " ( " + BOOK_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_AUTHOR + " TEXT," + COLUMN_DESCRIPTION
             + " TEXT," + COLUMN_WEBSITE + " TEXT)";
 
     public static final String CREATE_LOCKER_TABLE = "CREATE TABLE " +
-            TABLE_LOCKER + " ("  + COLUMN_RATING + " INTEGER," +  COLUMN_READ + " INTEGER," +
-            " FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + "BOOK_ID" + ") )";
+            TABLE_LOCKER + " ( "  + BOOK_ID + " INT," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + "BOOK_ID" + ") )";
 
 
     public DatabaseHelper(Context context) {
@@ -120,10 +118,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             book = new BookData(
-                    cursor.getString(0),
+                    cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3));
+                    cursor.getString(3),
+                    cursor.getString(4));
         }
         db.close();
         return book;
@@ -136,10 +135,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<BookData> books = new ArrayList<>();
         while(cursor.moveToNext()) {
             books.add(new BookData(
-                    cursor.getString(0),
+                    cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3)));
+                    cursor.getString(3),
+                    cursor.getString(4)));
         }
         db.close();
         return books;
@@ -149,7 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public void deleteLockerItem(Integer book){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_LOCKER, BOOK_ID_FOREIGN + " = ?",
+        db.delete(TABLE_LOCKER, BOOK_ID + " = ?",
                 new String[]{String.valueOf(book)});
         db.close();
     }
