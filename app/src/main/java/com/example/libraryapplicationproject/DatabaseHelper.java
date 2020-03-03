@@ -67,15 +67,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static final String CREATE_BOOK_TABLE = "CREATE TABLE " +
-            TABLE_BOOK + " ( " + BOOK_ID + " INTEGER PRIMARY KEY," +
+            TABLE_BOOK + "( " + BOOK_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_AUTHOR + " TEXT," + COLUMN_DESCRIPTION
-            + " TEXT," + COLUMN_WEBSITE + " TEXT)";
+            + " TEXT," + COLUMN_WEBSITE + " TEXT);";
 
     public static final String CREATE_LOCKER_TABLE = "CREATE TABLE " +
-            TABLE_LOCKER + " ( "  + BOOK_ID + " INT," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") )";
+            TABLE_LOCKER + "( "  + BOOK_ID + " INTEGER," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
 
     public static final String CREATE_FAVORITES_TABLE = "CREATE TABLE " +
-            TABLE_FAVORITES + " ( "  + BOOK_ID + " INT," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") )";
+            TABLE_FAVORITES + " ( "  + BOOK_ID + " INTEGER," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
 
 
     public DatabaseHelper(Context context) {
@@ -109,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /*
-           READ STATEMENTS
+         BOOK TABLE READ STATEMENTS
      */
 
     public BookData getBook(int id){
@@ -134,6 +134,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<BookData> getAllBooks(){
         SQLiteDatabase db  = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_BOOK ,
+                null);
+        ArrayList<BookData> books = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            books.add(new BookData(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)));
+        }
+        db.close();
+        return books;
+    }
+
+    /*
+    LOCKER TABLE READ STATEMENTS
+     */
+
+    public ArrayList<BookData> getAllLockerBooks(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_LOCKER + " ON " + TABLE_BOOK + "." + BOOK_ID +
+                "=" + TABLE_LOCKER + "." + BOOK_ID,
                 null);
         ArrayList<BookData> books = new ArrayList<>();
         while(cursor.moveToNext()) {
