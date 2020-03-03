@@ -3,9 +3,9 @@ package com.example.libraryapplicationproject.DeliciousBeans;
 public class BookData {
     public String bookName;
     public String bookAuthor;
-    public String bookPublisher;
     public String bookDescription;
     public String bookURL;
+    public int bookID;
     public int bookImage;
 
     /**
@@ -13,22 +13,20 @@ public class BookData {
      * @since 2020-03-2
      * @param bookName the name of the book
      * @param bookAuthor the author of the book
-     * @param bookPublisher the publisher of the book
+     * @param bookID the IDof the book
      */
 
-    public BookData(String bookName, String bookAuthor, String bookPublisher, int bookImage) {
+    public BookData( int bookID, String bookName, String bookAuthor, String bookDescription, String bookURL) {
         this.bookName = bookName;
-        this.bookAuthor = bookAuthor;
-        this.bookPublisher = bookPublisher;
-        this.bookImage =  bookImage;
-    }
-
-    public BookData(String bookName, String bookAuthor, String bookDescription, String bookURL) {
-        this.bookName = bookName;
+        this.bookID = bookID;
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
-        this.bookURL =  bookURL;
+        this.bookURL = bookURL;
     }
+
+    public int getBookID() {return bookID;}
+
+    public void setBookID(int bookID) {this.bookID = bookID;}
 
     public String getBookDescription() {return bookDescription;}
 
@@ -54,13 +52,6 @@ public class BookData {
         this.bookAuthor = bookAuthor;
     }
 
-    public String getBookPublisher() {
-        return bookPublisher;
-    }
-
-    public void setBookPublisher(String bookPublisher) {
-        this.bookPublisher = bookPublisher;
-    }
 
     public int getBookImage() {
         return bookImage;
