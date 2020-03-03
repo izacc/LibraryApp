@@ -34,6 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_BOOK = "book";
     public static final String TABLE_LOCKER = "locker";
+    public static final String TABLE_FAVORITES = "favorites";
     public static final String TABLE_IMAGE = "image";
 
 
@@ -60,9 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_RESOURCE = "resource";
 
-    /*
-     * Locker Table
-     */
+
     public static final String COLUMN_RATING = "rating";
     public static final String COLUMN_READ = "is_read";
 
@@ -73,7 +72,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " TEXT," + COLUMN_WEBSITE + " TEXT)";
 
     public static final String CREATE_LOCKER_TABLE = "CREATE TABLE " +
-            TABLE_LOCKER + " ( "  + BOOK_ID + " INT," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + "BOOK_ID" + ") )";
+            TABLE_LOCKER + " ( "  + BOOK_ID + " INT," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") )";
+
+    public static final String CREATE_FAVORITES_TABLE = "CREATE TABLE " +
+            TABLE_FAVORITES + " ( "  + BOOK_ID + " INT," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") )";
 
 
     public DatabaseHelper(Context context) {
@@ -84,6 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_BOOK_TABLE);
         db.execSQL(CREATE_LOCKER_TABLE);
+        db.execSQL(CREATE_FAVORITES_TABLE);
     }
 
     @Override
