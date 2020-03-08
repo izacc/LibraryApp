@@ -36,8 +36,6 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class SearchBook extends Fragment {
-    //the base url
-     String basicUrl = "https://www.googleapis.com/books/v1/volumes?q=";
     //searchBar
     private EditText search;
     //submitButton
@@ -80,7 +78,7 @@ public class SearchBook extends Fragment {
                 if(userSearch.equals("")){
                     Toast.makeText(getContext(),"Enter a book",Toast.LENGTH_SHORT).show();
                 }else{
-                    Uri uriSearch = Uri.parse(basicUrl+quickfix);
+                    Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix);
                     Uri.Builder builder = uriSearch.buildUpon();
                    final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, builder.toString(), null,
                             new Response.Listener<JSONObject>() {
