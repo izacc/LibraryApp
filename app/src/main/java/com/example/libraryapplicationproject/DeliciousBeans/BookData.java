@@ -24,6 +24,14 @@ public class BookData {
         this.bookURL = bookURL;
     }
 
+    //constructor for testing purposes
+    public BookData(String bookName, String bookAuthor, int bookImage) {
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookImage = bookImage;
+    }
+
+
     public int getBookID() {return bookID;}
 
     public void setBookID(int bookID) {this.bookID = bookID;}
