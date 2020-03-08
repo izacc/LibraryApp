@@ -7,6 +7,14 @@ public class BookData {
     public String bookURL;
     public int bookID;
     public int bookImage;
+    public String bookCat ;
+
+    //idk how to display image yet so this is temporary
+    public BookData(String bookName, String bookAuthor, String bookCat) {
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookCat = bookCat;
+    }
 
     /**
      * @author yonis sheekh
@@ -67,6 +75,14 @@ public class BookData {
 
     public void setBookImage(int bookImage) {
         this.bookImage = bookImage;
+    }
+
+    public String getBookCat() {
+        return bookCat;
+    }
+
+    public void setBookCat(String bookCat) {
+        this.bookCat = bookCat;
     }
 
 }
