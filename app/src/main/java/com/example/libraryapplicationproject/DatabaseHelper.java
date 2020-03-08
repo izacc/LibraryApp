@@ -34,6 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_BOOK = "book";
     public static final String TABLE_LOCKER = "locker";
+    public static final String TABLE_FAVORITES = "favorites";
     public static final String TABLE_IMAGE = "image";
 
 
@@ -41,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Foreign keys
    */
 
-    public static final String BOOK_ID = "id";
+    public static final String BOOK_ID = "book_id";
     public static final String IMAGE_ID = "image_id";
 
     /*
@@ -60,22 +61,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_RESOURCE = "resource";
 
-    /*
-     * Locker Table
-     */
-    public static final String BOOK_ID_FOREIGN = "book_id";
+
     public static final String COLUMN_RATING = "rating";
     public static final String COLUMN_READ = "is_read";
 
 
     public static final String CREATE_BOOK_TABLE = "CREATE TABLE " +
-            TABLE_BOOK + " (" + BOOK_ID + " INTEGER PRIMARY KEY," +
+            TABLE_BOOK + "( " + BOOK_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_AUTHOR + " TEXT," + COLUMN_DESCRIPTION
-            + " TEXT," + COLUMN_WEBSITE + " TEXT)";
+            + " TEXT," + COLUMN_WEBSITE + " TEXT);";
 
     public static final String CREATE_LOCKER_TABLE = "CREATE TABLE " +
-            TABLE_LOCKER + " ("  + COLUMN_RATING + " INTEGER," +  COLUMN_READ + " INTEGER," +
-            " FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + "BOOK_ID" + ") )";
+            TABLE_LOCKER + "( "  + BOOK_ID + " INTEGER," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
+
+    //Favorited books can exist without being added to the locker
+    public static final String CREATE_FAVORITES_TABLE = "CREATE TABLE " +
+            TABLE_FAVORITES + " ( "  + BOOK_ID + " INTEGER," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
 
 
     public DatabaseHelper(Context context) {
@@ -86,6 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_BOOK_TABLE);
         db.execSQL(CREATE_LOCKER_TABLE);
+        db.execSQL(CREATE_FAVORITES_TABLE);
     }
 
     @Override
@@ -108,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /*
-           READ STATEMENTS
+         BOOK TABLE READ STATEMENTS
      */
 
     public BookData getBook(int id){
@@ -120,10 +122,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             book = new BookData(
-                    cursor.getString(0),
+                    cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3));
+                    cursor.getString(3),
+                    cursor.getString(4));
         }
         db.close();
         return book;
@@ -136,20 +139,106 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<BookData> books = new ArrayList<>();
         while(cursor.moveToNext()) {
             books.add(new BookData(
-                    cursor.getString(0),
+                    cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3)));
+                    cursor.getString(3),
+                    cursor.getString(4)));
         }
         db.close();
         return books;
     }
+
+    /*
+    LOCKER TABLE READ STATEMENTS
+     */
+
+    public ArrayList<BookData> getAllLockerBooks(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_FAVORITES + " ON " + TABLE_BOOK + "." + BOOK_ID +
+                "=" + TABLE_FAVORITES + "." + BOOK_ID,
+                null);
+        ArrayList<BookData> books = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            books.add(new BookData(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)));
+        }
+        db.close();
+        return books;
+    }
+
+    //This should work, unable to test
+    public BookData getLockerBook(int id){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        BookData book = null;
+        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_FAVORITES + " ON " + TABLE_BOOK + "." + BOOK_ID +
+                        "=" + TABLE_FAVORITES + "." + BOOK_ID + " WHERE " + TABLE_FAVORITES + "." + BOOK_ID + " = " + id,
+                null);
+
+        if (cursor.moveToFirst()) {
+            book = new BookData(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4));
+        }
+        db.close();
+        return book;
+    }
+
+    /*
+        FAVOURITES TABLE READ STATEMENTS
+     */
+
+    public ArrayList<BookData> getAllFavorites(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_LOCKER + " ON " + TABLE_BOOK + "." + BOOK_ID +
+                        "=" + TABLE_LOCKER + "." + BOOK_ID,
+                null);
+        ArrayList<BookData> books = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            books.add(new BookData(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)));
+        }
+        db.close();
+        return books;
+    }
+
+    //This should work, unable to test
+    public BookData getFavoriteBook(int id){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        BookData book = null;
+        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_LOCKER + " ON " + TABLE_BOOK + "." + BOOK_ID +
+                        "=" + TABLE_LOCKER + "." + BOOK_ID + " WHERE " + TABLE_LOCKER + "." + BOOK_ID + " = " + id,
+                null);
+
+        if (cursor.moveToFirst()) {
+            book = new BookData(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4));
+        }
+        db.close();
+        return book;
+    }
+
     /*
         Delete Statements
      */
     public void deleteLockerItem(Integer book){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_LOCKER, BOOK_ID_FOREIGN + " = ?",
+        db.delete(TABLE_LOCKER, BOOK_ID + " = ?",
                 new String[]{String.valueOf(book)});
         db.close();
     }
