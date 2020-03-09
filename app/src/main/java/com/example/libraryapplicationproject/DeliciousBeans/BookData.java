@@ -1,6 +1,8 @@
 package com.example.libraryapplicationproject.DeliciousBeans;
 
-public class BookData {
+import java.util.ArrayList;
+
+public class BookData extends ArrayList<BookData> {
     public String bookName;
     public String bookAuthor;
     public String bookDescription;

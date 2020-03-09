@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 /**
  * @author yonis sheekh
- * @since 2020-03-7
+ * @since 2020-03-9
  * A simple {@link Fragment} subclass.
  */
 public class SearchBook extends Fragment {
@@ -40,7 +40,9 @@ public class SearchBook extends Fragment {
     private EditText search;
     //submitButton
     private Button searchButton;
+    //request.
     private RequestQueue requestQueue;
+    //recycler adapter
     private BookAdapter adapt;
     private RecyclerView recycle;
     public SearchBook() {
@@ -61,26 +63,26 @@ public class SearchBook extends Fragment {
          manager.setOrientation(RecyclerView.VERTICAL);
          recycle.setLayoutManager(manager);
 
+
         if(requestQueue == null){
             requestQueue = Volley.newRequestQueue(getContext());
         }
-
-
-
-
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //clear the list every time a search is made
                 books.clear();
                 String userSearch = search.getText().toString();
+                //replace every space the user enters with plus so url can be read properly
                String quickfix = userSearch.replace(" ", "+");
                 if(userSearch.equals("")){
+                    //no books
                     Toast.makeText(getContext(),"Enter a book",Toast.LENGTH_SHORT).show();
                 }else{
+                    //base url with the users entry
                     Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix);
-                    Uri.Builder builder = uriSearch.buildUpon();
-                   final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, builder.toString(), null,
+//                    Uri.Builder builder = uriSearch.buildUpon();
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, uriSearch.toString(), null,
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
@@ -94,12 +96,12 @@ public class SearchBook extends Fragment {
 
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                            JSONObject volumInfo = jsonObject.getJSONObject("volumeInfo");
+                                            JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
 
                                             try {
-                                                bookName = volumInfo.getString("title");
-                                                bookAuthor = volumInfo.getString("authors");
-                                                bookCat = volumInfo.getJSONArray("categories").getString(0);
+                                                bookName = volumeInfo.getString("title");
+                                                bookAuthor = volumeInfo.getString("authors");
+                                                bookCat = volumeInfo.getJSONArray("categories").getString(0);
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
