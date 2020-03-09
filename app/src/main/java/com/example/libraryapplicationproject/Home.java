@@ -41,39 +41,39 @@ public class Home extends Fragment {
          this is just placeholder to showcase  how home screen will (hopefully look like) after API implementation
           */
         ArrayList<BookData> data = new ArrayList<>();
-        data.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));
-        data.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder));
-        data.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
-        data.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder));
-        data.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder));
-        data.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));
+        data.add(new BookData("placeholder1","Author1",R.drawable.placeholder));
+        data.add(new BookData("placeholder2","Author2",R.drawable.placeholder));
+        data.add(new BookData("placeholder3","Author3",R.drawable.placeholder));
+        data.add(new BookData("placeholder4","Author4",R.drawable.placeholder));
+        data.add(new BookData("placeholder5","Author5",R.drawable.placeholder));
+        data.add(new BookData("placeholder6","Author6",R.drawable.placeholder));
 
 
         ArrayList<BookData> data2 = new ArrayList<>();
-        data2.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));
-        data2.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder));
-        data2.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
-        data2.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder));
-        data2.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder));
-        data2.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));
+        data2.add(new BookData("placeholder1","Author1",R.drawable.placeholder));
+        data2.add(new BookData("placeholder2","Author2",R.drawable.placeholder));
+        data2.add(new BookData("placeholder3","Author3",R.drawable.placeholder));
+        data2.add(new BookData("placeholder4","Author4",R.drawable.placeholder));
+        data2.add(new BookData("placeholder5","Author5",R.drawable.placeholder));
+        data2.add(new BookData("placeholder6","Author6",R.drawable.placeholder));
 
 
         ArrayList<BookData> data3 = new ArrayList<>();
-        data3.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));
-        data3.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder));
-        data3.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
-        data3.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder));
-        data3.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder));
-        data3.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));
+        data3.add(new BookData("placeholder1","Author1",R.drawable.placeholder));
+        data3.add(new BookData("placeholder2","Author2",R.drawable.placeholder));
+        data3.add(new BookData("placeholder3","Author3",R.drawable.placeholder));
+        data3.add(new BookData("placeholder4","Author4",R.drawable.placeholder));
+        data3.add(new BookData("placeholder5","Author5",R.drawable.placeholder));
+        data3.add(new BookData("placeholder6","Author6",R.drawable.placeholder));
 
 
         ArrayList<BookData> data4 = new ArrayList<>();
-        data4.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));
-        data4.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder));
-        data4.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
-        data4.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder));
-        data4.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder));
-        data4.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));
+        data4.add(new BookData("placeholder1","Author1",R.drawable.placeholder));
+        data4.add(new BookData("placeholder2","Author2",R.drawable.placeholder));
+        data4.add(new BookData("placeholder3","Author3",R.drawable.placeholder));
+        data4.add(new BookData("placeholder4","Author4",R.drawable.placeholder));
+        data4.add(new BookData("placeholder5","Author5",R.drawable.placeholder));
+        data4.add(new BookData("placeholder6","Author6",R.drawable.placeholder));
 
 
 

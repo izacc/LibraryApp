@@ -15,4 +15,9 @@
         android:name="com.example.libraryapplicationproject.Favorites"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/searchBook"
+        android:name="com.example.libraryapplicationproject.SearchBook"
+        android:label="fragment_search_book"
+        tools:layout="@layout/fragment_search_book" />
 </navigation>

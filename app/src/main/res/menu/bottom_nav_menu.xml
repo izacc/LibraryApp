@@ -10,4 +10,9 @@
         android:id="@+id/favorites"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/searchBook"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/Search" />
 </menu>

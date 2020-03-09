@@ -60,6 +60,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         holder.image.setImageResource(item.getBookImage());
 
 
+
     }
 
     /**
@@ -78,13 +79,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
          protected TextView name;
          protected ImageView image;
          protected TextView author;
-         protected TextView publisher;
+         protected TextView category;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.name = itemView.findViewById(R.id.name);
             this.image = itemView.findViewById(R.id.bookImage);
             this.author = itemView.findViewById(R.id.author);
-            this.publisher = itemView.findViewById(R.id.publisher);
+            this.category = itemView.findViewById(R.id.cat);
 
         }
     }
