@@ -1,25 +1,19 @@
-package com.example.libraryapplicationproject.DeliciousBeans;
+package com.example.libraryapplicationproject;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.libraryapplicationproject.DatabaseHelper;
-import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapter.CustomViewHolder> {
@@ -28,10 +22,13 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
     private ArrayList<BookData> books;
     private Context context;
 
+
     public CustomLockerAdapter(ArrayList<BookData> books, Context context) {
         this.books = books;
         this.context = context;
+
     }
+
 
 
     @NonNull
@@ -43,13 +40,15 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
+        DatabaseHelper db = new DatabaseHelper(context);
         final BookData book = books.get(position);
         holder.name.setText(book.getBookName());
         holder.author.setText(book.getBookAuthor());
         holder.description.setText(book.getBookDescription());
         //placeholder for image
         holder.bookImage.setImageResource(R.drawable.placeholder);
-        holder.RatingSystemReader(book);
+        holder.RatingSystemReader(book.getBookRating());
+        db.close();
     }
 
     @Override
@@ -60,6 +59,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
     class CustomViewHolder
             extends RecyclerView.ViewHolder
             implements View.OnClickListener {
+
         protected TextView name;
         protected TextView author;
         protected TextView description;
@@ -71,8 +71,9 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
         protected ImageView star4;
         protected ImageView star5;
 
-        public void RatingSystemReader(BookData book){
-           switch(book.getBookRating()){
+
+        public void RatingSystemReader(int rating){
+           switch(rating){
                case 1:
                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
                    star2.setImageResource(R.drawable.ic_star_white_24dp);
@@ -115,6 +116,8 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
            }
         }
         public void RatingSystemClicks(){
+            final DatabaseHelper db = new DatabaseHelper(context);
+
             star1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -124,6 +127,8 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                     star4.setImageResource(R.drawable.ic_star_white_24dp);
                     star5.setImageResource(R.drawable.ic_star_white_24dp);
                     books.get(getLayoutPosition()).setBookRating(1);
+                    db.updateRating(books.get(getLayoutPosition()));
+                    db.close();
                 }
             });
             star2.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +140,8 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                     star4.setImageResource(R.drawable.ic_star_white_24dp);
                     star5.setImageResource(R.drawable.ic_star_white_24dp);
                     books.get(getLayoutPosition()).setBookRating(2);
+                    db.updateRating(books.get(getLayoutPosition()));
+                    db.close();
                 }
             });
             star3.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +153,8 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                     star4.setImageResource(R.drawable.ic_star_white_24dp);
                     star5.setImageResource(R.drawable.ic_star_white_24dp);
                     books.get(getLayoutPosition()).setBookRating(3);
+                    db.updateRating(books.get(getLayoutPosition()));
+                    db.close();
 
                 }
             });
@@ -158,6 +167,8 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                     star4.setImageResource(R.drawable.ic_star_gold_24dp);
                     star5.setImageResource(R.drawable.ic_star_white_24dp);
                     books.get(getLayoutPosition()).setBookRating(4);
+                    db.updateRating(books.get(getLayoutPosition()));
+                    db.close();
                 }
             });
             star5.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +180,8 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                     star4.setImageResource(R.drawable.ic_star_gold_24dp);
                     star5.setImageResource(R.drawable.ic_star_gold_24dp);
                     books.get(getLayoutPosition()).setBookRating(5);
+                    db.updateRating(books.get(getLayoutPosition()));
+                    db.close();
 
                 }
             });
@@ -202,7 +215,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     DatabaseHelper db = new DatabaseHelper(context);
-                                    db.deleteLockerItem(books.get(
+                                    db.deleteBook(books.get(
                                             getLayoutPosition()).getBookID());
                                     books.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
