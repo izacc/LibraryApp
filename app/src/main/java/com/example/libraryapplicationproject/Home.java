@@ -42,7 +42,7 @@ public class Home extends Fragment {
 
 
 
-       /* ArrayList<BookData> data = new ArrayList<>();
+        ArrayList<BookData> data = new ArrayList<>();
         data.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));
         data.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder));
         data.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
@@ -75,7 +75,7 @@ public class Home extends Fragment {
         data4.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
         data4.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder));
         data4.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder));
-        data4.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));*//*
+        data4.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));
 
 
 
@@ -106,7 +106,7 @@ public class Home extends Fragment {
         BookAdapter adapt4 = new BookAdapter(data4,getContext());
         recycle4.setLayoutManager(manager4);
         recycle4.setAdapter(adapt4);
-*/
+
         return view;
     }
 
