@@ -19,6 +19,12 @@ public class BookData {
         this.bookRating = bookRating;
 
     }
+
+    public BookData(String bookName, String bookAuthor, String bookCat){
+        this.bookImage = bookImage;
+        this.bookName = bookName;
+        this.bookCat = bookCat;
+    }
     /**
      * @author yonis sheekh
      * @since 2020-03-2
