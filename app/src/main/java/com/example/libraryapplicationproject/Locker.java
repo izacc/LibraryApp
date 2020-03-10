@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
-import com.example.libraryapplicationproject.DeliciousBeans.CustomLockerAdapter;
-import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 
@@ -35,8 +33,8 @@ public class Locker extends Fragment {
         final View view =  inflater.inflate(R.layout.fragment_locker, container, false);
         DatabaseHelper db = new DatabaseHelper(getContext());
         //in future this will pull items from database
-
-        CustomLockerAdapter adapter = new CustomLockerAdapter(Home.books, getContext());
+        ArrayList<BookData> books = db.getAllBooks();
+        CustomLockerAdapter adapter = new CustomLockerAdapter(books, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.lockerRecyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
