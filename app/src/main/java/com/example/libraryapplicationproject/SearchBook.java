@@ -36,6 +36,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class SearchBook extends Fragment {
+
     //searchBar
     private EditText search;
     //submitButton
@@ -60,7 +61,6 @@ public class SearchBook extends Fragment {
          final ArrayList<BookData> books = new ArrayList<>();
          recycle = view.findViewById(R.id.searchResults);
          LinearLayoutManager manager = new LinearLayoutManager(getContext());
-         manager.setOrientation(RecyclerView.VERTICAL);
          recycle.setLayoutManager(manager);
 
 
@@ -86,14 +86,11 @@ public class SearchBook extends Fragment {
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    //info being retrieved...for now only name author and category
-                                    String bookName = "";
-                                    String bookAuthor = "";
-//                                    String bookDes;
-                                    String bookCat = "";
                                     try {
                                         JSONArray jsonArray = response.getJSONArray("items");
-
+                                        String bookAuthor = "";
+                                        String bookCat = "";
+                                        String bookName = "";
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                                             JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
@@ -122,7 +119,6 @@ public class SearchBook extends Fragment {
                     });
                     requestQueue.add(jsonObjectRequest);
                 }
-
             }
         });
          return view;

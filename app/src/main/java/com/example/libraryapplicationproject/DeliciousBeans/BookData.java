@@ -21,7 +21,7 @@ public class BookData {
     }
 
     public BookData(String bookName, String bookAuthor, String bookCat){
-        this.bookImage = bookImage;
+        this.bookAuthor = bookAuthor;
         this.bookName = bookName;
         this.bookCat = bookCat;
     }
@@ -39,6 +39,13 @@ public class BookData {
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
         this.bookURL = bookURL;
+    }
+
+    public BookData(String bookName, String bookAuthor, String publisher2, int bookImage) {
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookDescription = publisher2;
+        this.bookImage = bookImage;
     }
 
 
@@ -60,6 +67,14 @@ public class BookData {
 
     public String getBookName() {
         return bookName;
+    }
+
+    public String getBookCat() {
+        return bookCat;
+    }
+
+    public void setBookCat(String bookCat) {
+        this.bookCat = bookCat;
     }
 
     public void setBookName(String bookName) {
