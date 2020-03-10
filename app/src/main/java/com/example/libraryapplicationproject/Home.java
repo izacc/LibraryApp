@@ -23,7 +23,6 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class Home extends Fragment {
-    public static ArrayList<BookData> books = new ArrayList<>();
 
     public Home() {
         // Required empty public constructor
@@ -41,12 +40,7 @@ public class Home extends Fragment {
          this is just placeholder to showcase  how home screen will (hopefully look like) after API implementation
           */
 
-        books.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder, 0));
-        books.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder, 0));
-        books.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder,0 ));
-        books.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder,0));
-        books.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder,0));
-        books.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder,0));
+
 
        /* ArrayList<BookData> data = new ArrayList<>();
         data.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));

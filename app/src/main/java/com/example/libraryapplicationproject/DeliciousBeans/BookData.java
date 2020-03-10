@@ -27,11 +27,21 @@ public class BookData {
      * @param bookID the IDof the book
      */
 
-    public BookData( int bookID, String bookName, String bookAuthor, String bookDescription, String bookURL) {
+
+    public BookData(String bookName, String bookAuthor, String bookDescription, int bookRating, String bookURL) {
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookDescription = bookDescription;
+        this.bookRating = bookRating;
+        this.bookURL = bookURL;
+    }
+
+    public BookData( int bookID, String bookName, String bookAuthor, String bookDescription, int bookRating, String bookURL) {
         this.bookName = bookName;
         this.bookID = bookID;
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
+        this.bookRating = bookRating;
         this.bookURL = bookURL;
     }
 
