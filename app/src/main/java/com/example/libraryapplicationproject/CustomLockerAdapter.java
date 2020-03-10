@@ -74,6 +74,13 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
         public void RatingSystemReader(int rating){
            switch(rating){
+               case 0:
+                   star1.setImageResource(R.drawable.ic_star_white_24dp);
+                   star2.setImageResource(R.drawable.ic_star_white_24dp);
+                   star3.setImageResource(R.drawable.ic_star_white_24dp);
+                   star4.setImageResource(R.drawable.ic_star_white_24dp);
+                   star5.setImageResource(R.drawable.ic_star_white_24dp);
+                   break;
                case 1:
                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
                    star2.setImageResource(R.drawable.ic_star_white_24dp);
