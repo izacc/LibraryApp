@@ -7,7 +7,14 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/locker"
+        android:icon="@drawable/ic_book_black_24dp"
+        android:title="@string/locker" />
+
+    <item
         android:id="@+id/favorites"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="@string/favorites" />
+
+
 </menu>

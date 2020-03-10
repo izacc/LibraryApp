@@ -10,4 +10,5 @@
     <string name="action_settings">settingsItem1</string>
     <string name="action_settings2">settingsItem2</string>
     <string name="action_settings3">settingsItem3</string>
+    <string name="locker">Locker</string>
 </resources>

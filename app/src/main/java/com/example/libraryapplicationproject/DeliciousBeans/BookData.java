@@ -7,7 +7,16 @@ public class BookData {
     public String bookURL;
     public int bookID;
     public int bookImage;
+    public String bookCat;
 
+    //this is a changed method to test my functionality
+    public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage) {
+        this.bookImage = bookImage;
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookDescription = bookDescription;
+
+    }
     /**
      * @author yonis sheekh
      * @since 2020-03-2
