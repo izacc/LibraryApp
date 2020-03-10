@@ -49,6 +49,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
         holder.description.setText(book.getBookDescription());
         //placeholder for image
         holder.bookImage.setImageResource(R.drawable.placeholder);
+        holder.RatingSystemReader(book);
     }
 
     @Override
@@ -64,6 +65,114 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
         protected TextView description;
         protected ImageView bookImage;
         protected ImageView deleteButton;
+        protected ImageView star1;
+        protected ImageView star2;
+        protected ImageView star3;
+        protected ImageView star4;
+        protected ImageView star5;
+
+        public void RatingSystemReader(BookData book){
+           switch(book.getBookRating()){
+               case 1:
+                   star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star2.setImageResource(R.drawable.ic_star_white_24dp);
+                   star3.setImageResource(R.drawable.ic_star_white_24dp);
+                   star4.setImageResource(R.drawable.ic_star_white_24dp);
+                   star5.setImageResource(R.drawable.ic_star_white_24dp);
+                   break;
+               case 2:
+                   star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star3.setImageResource(R.drawable.ic_star_white_24dp);
+                   star4.setImageResource(R.drawable.ic_star_white_24dp);
+                   star5.setImageResource(R.drawable.ic_star_white_24dp);
+                   break;
+               case 3:
+                   star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star3.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star4.setImageResource(R.drawable.ic_star_white_24dp);
+                   star5.setImageResource(R.drawable.ic_star_white_24dp);
+                   break;
+               case 4:
+                   star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star3.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star4.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star5.setImageResource(R.drawable.ic_star_white_24dp);
+                   break;
+               case 5:
+                   star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star3.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star4.setImageResource(R.drawable.ic_star_gold_24dp);
+                   star5.setImageResource(R.drawable.ic_star_gold_24dp);
+                   break;
+                   default:
+                       break;
+
+
+           }
+        }
+        public void RatingSystemClicks(){
+            star1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star2.setImageResource(R.drawable.ic_star_white_24dp);
+                    star3.setImageResource(R.drawable.ic_star_white_24dp);
+                    star4.setImageResource(R.drawable.ic_star_white_24dp);
+                    star5.setImageResource(R.drawable.ic_star_white_24dp);
+                    books.get(getLayoutPosition()).setBookRating(1);
+                }
+            });
+            star2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star3.setImageResource(R.drawable.ic_star_white_24dp);
+                    star4.setImageResource(R.drawable.ic_star_white_24dp);
+                    star5.setImageResource(R.drawable.ic_star_white_24dp);
+                    books.get(getLayoutPosition()).setBookRating(2);
+                }
+            });
+            star3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star3.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star4.setImageResource(R.drawable.ic_star_white_24dp);
+                    star5.setImageResource(R.drawable.ic_star_white_24dp);
+                    books.get(getLayoutPosition()).setBookRating(3);
+
+                }
+            });
+            star4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star3.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star4.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star5.setImageResource(R.drawable.ic_star_white_24dp);
+                    books.get(getLayoutPosition()).setBookRating(4);
+                }
+            });
+            star5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    star1.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star2.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star3.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star4.setImageResource(R.drawable.ic_star_gold_24dp);
+                    star5.setImageResource(R.drawable.ic_star_gold_24dp);
+                    books.get(getLayoutPosition()).setBookRating(5);
+
+                }
+            });
+        }
 
         public CustomViewHolder(final View itemView) {
             super(itemView);
@@ -72,6 +181,14 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
             this.description = itemView.findViewById(R.id.bookDescription);
             this.bookImage = itemView.findViewById(R.id.bookImage);
             this.deleteButton = itemView.findViewById(R.id.deleteButton);
+            this.star1 = itemView.findViewById(R.id.star1);
+            this.star2 = itemView.findViewById(R.id.star2);
+            this.star3 = itemView.findViewById(R.id.star3);
+            this.star4 = itemView.findViewById(R.id.star4);
+            this.star5 = itemView.findViewById(R.id.star5);
+
+            RatingSystemClicks();
+
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

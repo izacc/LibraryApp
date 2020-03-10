@@ -5,16 +5,18 @@ public class BookData {
     public String bookAuthor;
     public String bookDescription;
     public String bookURL;
+    public int bookRating;
     public int bookID;
     public int bookImage;
     public String bookCat;
 
     //this is a changed method to test my functionality
-    public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage) {
+    public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage, int bookRating) {
         this.bookImage = bookImage;
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
+        this.bookRating = bookRating;
 
     }
     /**
@@ -32,6 +34,11 @@ public class BookData {
         this.bookDescription = bookDescription;
         this.bookURL = bookURL;
     }
+
+
+    public int getBookRating() {return bookRating;}
+
+    public void setBookRating(int bookRating) {this.bookRating = bookRating;}
 
     public int getBookID() {return bookID;}
 

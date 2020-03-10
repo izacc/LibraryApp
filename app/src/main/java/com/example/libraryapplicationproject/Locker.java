@@ -35,14 +35,8 @@ public class Locker extends Fragment {
         final View view =  inflater.inflate(R.layout.fragment_locker, container, false);
         DatabaseHelper db = new DatabaseHelper(getContext());
         //in future this will pull items from database
-        ArrayList<BookData> books = new ArrayList<>();
-        books.add(new BookData("placeholder1","Author1","publisher1",R.drawable.placeholder));
-        books.add(new BookData("placeholder2","Author2","publisher2",R.drawable.placeholder));
-        books.add(new BookData("placeholder3","Author3","publisher3",R.drawable.placeholder));
-        books.add(new BookData("placeholder4","Author4","publisher4",R.drawable.placeholder));
-        books.add(new BookData("placeholder5","Author5","publisher5",R.drawable.placeholder));
-        books.add(new BookData("placeholder6","Author6","publisher6",R.drawable.placeholder));
-        CustomLockerAdapter adapter = new CustomLockerAdapter(books, getContext());
+
+        CustomLockerAdapter adapter = new CustomLockerAdapter(Home.books, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.lockerRecyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
