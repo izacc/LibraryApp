@@ -78,9 +78,10 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                     new AlertDialog.Builder(context)
                             .setTitle("Delete")
                             .setMessage("Are you sure you want to delete " + books.get(
-                                    getLayoutPosition()).getBookName() + "?")
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    getLayoutPosition()).getBookName()  + " from your locker?")
+                            .setIcon(R.drawable.ic_warning_black_24dp)
+                            .setPositiveButton("No", null)
+                            .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     DatabaseHelper db = new DatabaseHelper(context);
@@ -91,7 +92,6 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                                     db.close();
                                 }
                             })
-                            .setNegativeButton("No", null)
                             .show();
                 }
             });
