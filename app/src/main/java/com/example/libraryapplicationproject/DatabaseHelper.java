@@ -251,5 +251,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteBook(Integer book){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_BOOK, BOOK_ID + " = ?",
+                new String[]{String.valueOf(book)});
+        db.close();
+    }
+    public void updateRating(BookData book){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RATING, book.getBookRating());
+        db.update(TABLE_BOOK, values, BOOK_ID + "=?",
+                new String[]{String.valueOf(book.getBookID())});
+    }
+
 
 }

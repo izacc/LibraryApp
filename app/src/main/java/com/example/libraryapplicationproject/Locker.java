@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
-import com.example.libraryapplicationproject.DeliciousBeans.CustomLockerAdapter;
-import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 
