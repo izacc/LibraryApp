@@ -1,24 +1,24 @@
 package com.example.libraryapplicationproject.DeliciousBeans;
 
-import java.util.ArrayList;
-
-public class BookData extends ArrayList<BookData> {
+public class BookData {
     public String bookName;
     public String bookAuthor;
     public String bookDescription;
     public String bookURL;
+    public int bookRating;
     public int bookID;
     public int bookImage;
-    public String bookCat ;
+    public String bookCat;
 
-    //idk how to display image yet so this is temporary
-    public BookData(String bookName, String bookAuthor, String bookCat) {
+    //this is a changed method to test my functionality
+    public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage, int bookRating) {
+        this.bookImage = bookImage;
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
-        this.bookCat = bookCat;
-        
-    }
+        this.bookDescription = bookDescription;
+        this.bookRating = bookRating;
 
+    }
     /**
      * @author yonis sheekh
      * @since 2020-03-2
@@ -35,13 +35,10 @@ public class BookData extends ArrayList<BookData> {
         this.bookURL = bookURL;
     }
 
-    //constructor for testing purposes
-    public BookData(String bookName, String bookAuthor, int bookImage) {
-        this.bookName = bookName;
-        this.bookAuthor = bookAuthor;
-        this.bookImage = bookImage;
-    }
 
+    public int getBookRating() {return bookRating;}
+
+    public void setBookRating(int bookRating) {this.bookRating = bookRating;}
 
     public int getBookID() {return bookID;}
 
@@ -78,14 +75,6 @@ public class BookData extends ArrayList<BookData> {
 
     public void setBookImage(int bookImage) {
         this.bookImage = bookImage;
-    }
-
-    public String getBookCat() {
-        return bookCat;
-    }
-
-    public void setBookCat(String bookCat) {
-        this.bookCat = bookCat;
     }
 
 }

@@ -6,4 +6,6 @@
     <dimen name="elevation">2dp</dimen>
     <dimen name="TitleItemSize">20sp</dimen>
     <dimen name="cardViewCornerRadius">15dp</dimen>
+    <dimen name="bookName">26sp</dimen>
+    <dimen name="bookAuthor">15sp</dimen>
 </resources>
