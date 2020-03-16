@@ -96,8 +96,17 @@ public class SearchBook extends Fragment {
                                             JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
 
                                             try {
-                                                bookName = volumeInfo.getString("title");
-                                                bookAuthor = volumeInfo.getString("authors");
+                                                //json provided for author is array
+                                                JSONArray authors = volumeInfo.getJSONArray("authors");
+
+                                                //if author is only one give me only one
+                                                if(authors.length() == 1){
+                                                    bookAuthor = authors.getString(0);
+                                                }
+                                                //else give me all authors with pipe in between
+                                                else{
+                                                    bookAuthor = authors.getString(0) + ", " +authors.getString(1);
+                                                }
                                                 bookCat = volumeInfo.getJSONArray("categories").getString(0);
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
