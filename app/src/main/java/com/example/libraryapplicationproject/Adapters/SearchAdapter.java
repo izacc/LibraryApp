@@ -50,8 +50,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CustomSear
         holder.bookPub.setText(item.getBookPublisher());
         holder.pubDate.setText(item.getPublishedDate());
         holder.bookCat.setText(item.getBookCat());
-        Picasso.get().load(item.getImageBook()).into(holder.bookImage);
-
+        //if path is empty give me the placeholder Image instead else place it with its given image from url
+        if (item.getImageBook().isEmpty()) {
+            holder.bookImage.setImageResource(R.drawable.placeholder);
+        } else{
+            Picasso.get().load(item.getImageBook()).into(holder.bookImage);
+        }
     }
     /**
      * @since 2020-03-15
