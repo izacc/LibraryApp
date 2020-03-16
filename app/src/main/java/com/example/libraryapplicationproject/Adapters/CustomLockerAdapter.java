@@ -28,7 +28,6 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
     public CustomLockerAdapter(ArrayList<BookData> books, Context context) {
         this.books = books;
         this.context = context;
-
     }
 
 
