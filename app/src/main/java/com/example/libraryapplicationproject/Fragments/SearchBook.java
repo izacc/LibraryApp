@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.libraryapplicationproject.Adapters.BookAdapter;
+import com.example.libraryapplicationproject.Adapters.SearchAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
 
@@ -46,7 +47,7 @@ public class SearchBook extends Fragment {
     //request.
     private RequestQueue requestQueue;
     //recycler adapter
-    private BookAdapter adapt;
+    private SearchAdapter adapt;
     private RecyclerView recycle;
     public SearchBook() {
         // Required empty public constructor
@@ -93,6 +94,8 @@ public class SearchBook extends Fragment {
                                         String bookAuthor = "";
                                         String bookCat = "";
                                         String bookName = "";
+                                        String bookPub = "";
+                                        String pubDate = "";
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                                             JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
@@ -111,12 +114,14 @@ public class SearchBook extends Fragment {
                                                     bookAuthor = authors.getString(0) + ", " +authors.getString(1);
                                                 }
                                                 bookCat = volumeInfo.getJSONArray("categories").getString(0);
+                                                bookPub = volumeInfo.getString("publisher");
+                                                pubDate = volumeInfo.getString("publishedDate");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
 //                                            System.out.println(bookName);
-                                            books.add(new BookData(bookName, bookAuthor, bookCat));
-                                            adapt = new BookAdapter(books, getContext());
+                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate));
+                                            adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }
                                     } catch (JSONException e) {

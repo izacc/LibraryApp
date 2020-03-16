@@ -31,13 +31,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         this.context = context;
     }
 
-    /**
-     * @author Yonis Sheek
-     * @since 2020-03-1
-     * @param parent
-     * @param viewType
-     * @return ViewHolder(view)
-     */
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,7 +52,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         holder.name.setText(item.getBookName());
         holder.author.setText(item.getBookAuthor());
         holder.image.setImageResource(item.getBookImage());
-
+        holder.category.setText(item.getBookCat());
 
 
     }

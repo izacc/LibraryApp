@@ -1,6 +1,7 @@
 package com.example.libraryapplicationproject.DeliciousBeans;
 
 public class BookData {
+    //all properties
     public String bookName;
     public String bookAuthor;
     public String bookDescription;
@@ -9,6 +10,8 @@ public class BookData {
     public int bookID;
     public int bookImage;
     public String bookCat;
+    public String bookPublisher;
+    public String publishedDate;
 
     //this is a changed method to test my functionality
     public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage, int bookRating) {
@@ -20,10 +23,28 @@ public class BookData {
 
     }
 
-    public BookData(String bookName, String bookAuthor, String bookCat){
+    public String getBookPublisher() {
+        return bookPublisher;
+    }
+
+    public void setBookPublisher(String bookPublisher) {
+        this.bookPublisher = bookPublisher;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public BookData(String bookName, String bookAuthor, String bookCat,String bookPublisher,String publishedDate){
         this.bookAuthor = bookAuthor;
         this.bookName = bookName;
         this.bookCat = bookCat;
+        this.bookPublisher = bookPublisher;
+        this.publishedDate = publishedDate;
     }
     /**
      * @author yonis sheekh
