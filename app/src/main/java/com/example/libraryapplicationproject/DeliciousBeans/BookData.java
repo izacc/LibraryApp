@@ -9,9 +9,18 @@ public class BookData {
     public int bookRating;
     public int bookID;
     public int bookImage;
+    public String imageBook;
     public String bookCat;
     public String bookPublisher;
     public String publishedDate;
+
+    public String getImageBook() {
+        return imageBook;
+    }
+
+    public void setImageBook(String imageBook) {
+        this.imageBook = imageBook;
+    }
 
     //this is a changed method to test my functionality
     public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage, int bookRating) {
@@ -39,12 +48,13 @@ public class BookData {
         this.publishedDate = publishedDate;
     }
 
-    public BookData(String bookName, String bookAuthor, String bookCat,String bookPublisher,String publishedDate){
+    public BookData(String bookName, String bookAuthor, String bookCat,String bookPublisher,String publishedDate, String imageBook){
         this.bookAuthor = bookAuthor;
         this.bookName = bookName;
         this.bookCat = bookCat;
         this.bookPublisher = bookPublisher;
         this.publishedDate = publishedDate;
+        this.imageBook = imageBook;
     }
     /**
      * @author yonis sheekh

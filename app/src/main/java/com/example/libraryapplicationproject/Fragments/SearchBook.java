@@ -91,36 +91,43 @@ public class SearchBook extends Fragment {
                                 public void onResponse(JSONObject response) {
                                     try {
                                         JSONArray jsonArray = response.getJSONArray("items");
+                                        //data being retrieved from json
                                         String bookAuthor = "";
                                         String bookCat = "";
                                         String bookName = "";
                                         String bookPub = "";
                                         String pubDate = "";
+                                        String bookImage = "";
+                                        String aUrl = "";
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                            JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
+                                            JSONObject ResultInfo = jsonObject.getJSONObject("volumeInfo");
 
                                             try {
-                                                bookName = volumeInfo.getString("title");
+                                                bookName = ResultInfo.getString("title");
                                                 //json provided for author is array
-                                                JSONArray authors = volumeInfo.getJSONArray("authors");
+                                                JSONArray authors = ResultInfo.getJSONArray("authors");
 
                                                 //if author is only one give me only one
                                                 if(authors.length() == 1){
                                                     bookAuthor = authors.getString(0);
                                                 }
-                                                //else give me all authors with pipe in between
+                                                //else give me all authors with "," in between
                                                 else{
                                                     bookAuthor = authors.getString(0) + ", " +authors.getString(1);
                                                 }
-                                                bookCat = volumeInfo.getJSONArray("categories").getString(0);
-                                                bookPub = volumeInfo.getString("publisher");
-                                                pubDate = volumeInfo.getString("publishedDate");
+                                                bookCat = ResultInfo.getJSONArray("categories").getString(0);
+                                                bookPub = ResultInfo.getString("publisher");
+                                                pubDate = ResultInfo.getString("publishedDate");
+                                                bookImage = ResultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                                                 aUrl = bookImage.replace("http", "https");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-//                                            System.out.println(bookName);
-                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate));
+
+                                            System.out.println(bookImage);
+//
+                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,aUrl));
                                             adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }
