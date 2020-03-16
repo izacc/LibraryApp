@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Fragments;
 
 
 import android.net.Uri;
@@ -21,7 +21,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.libraryapplicationproject.Adapters.BookAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,6 +98,7 @@ public class SearchBook extends Fragment {
                                             JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
 
                                             try {
+                                                bookName = volumeInfo.getString("title");
                                                 //json provided for author is array
                                                 JSONArray authors = volumeInfo.getJSONArray("authors");
 

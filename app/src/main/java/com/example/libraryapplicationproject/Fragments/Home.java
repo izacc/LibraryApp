@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Fragments;
 
 
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.libraryapplicationproject.Adapters.BookAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 

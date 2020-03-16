@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.example.libraryapplicationproject.Home"
+        android:name="com.example.libraryapplicationproject.Fragments.Home"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/favorites"
-        android:name="com.example.libraryapplicationproject.Favorites"
+        android:name="com.example.libraryapplicationproject.Fragments.Favorites"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/locker"
-        android:name="com.example.libraryapplicationproject.Locker"
+        android:name="com.example.libraryapplicationproject.Fragments.Locker"
         android:label="My Locker"
         tools:layout="@layout/fragment_locker" />
 
     <fragment
         android:id="@+id/searchBook"
-        android:name="com.example.libraryapplicationproject.SearchBook"
+        android:name="com.example.libraryapplicationproject.Fragments.SearchBook"
         android:label="fragment_search_book"
         tools:layout="@layout/fragment_search_book" />
 </navigation>
