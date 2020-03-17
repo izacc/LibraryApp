@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,6 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
     public CustomLockerAdapter(ArrayList<BookData> books, Context context) {
         this.books = books;
         this.context = context;
-
     }
 
 

@@ -1,7 +1,6 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 
@@ -31,13 +31,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         this.context = context;
     }
 
-    /**
-     * @author Yonis Sheek
-     * @since 2020-03-1
-     * @param parent
-     * @param viewType
-     * @return ViewHolder(view)
-     */
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,7 +52,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         holder.name.setText(item.getBookName());
         holder.author.setText(item.getBookAuthor());
         holder.image.setImageResource(item.getBookImage());
-
+        holder.category.setText(item.getBookCat());
 
 
     }

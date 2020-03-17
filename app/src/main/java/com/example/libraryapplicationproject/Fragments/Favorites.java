@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Fragments;
 
 
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 
 /**

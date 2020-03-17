@@ -33,7 +33,7 @@
             android:layout_marginStart="8dp"
             android:text="Author"
             android:textColor="@android:color/background_light"
-            android:textSize="@dimen/bookAuthor"
+            android:textSize="@dimen/infoBook"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookName" />
 
@@ -44,7 +44,7 @@
             android:layout_marginStart="8dp"
             android:text="Description"
             android:textColor="@android:color/background_light"
-            android:textSize="@dimen/bookAuthor"
+            android:textSize="@dimen/infoBook"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookAuthor" />
 

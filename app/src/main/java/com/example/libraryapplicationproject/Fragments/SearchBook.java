@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Fragments;
 
 
 import android.net.Uri;
@@ -21,7 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.libraryapplicationproject.Adapters.BookAdapter;
+import com.example.libraryapplicationproject.Adapters.SearchAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +47,7 @@ public class SearchBook extends Fragment {
     //request.
     private RequestQueue requestQueue;
     //recycler adapter
-    private BookAdapter adapt;
+    private SearchAdapter adapt;
     private RecyclerView recycle;
     public SearchBook() {
         // Required empty public constructor
@@ -88,23 +91,48 @@ public class SearchBook extends Fragment {
                                 public void onResponse(JSONObject response) {
                                     try {
                                         JSONArray jsonArray = response.getJSONArray("items");
+                                        //data being retrieved from json
                                         String bookAuthor = "";
                                         String bookCat = "";
                                         String bookName = "";
+                                        String bookPub = "";
+                                        String pubDate = "";
+                                        String bookImage = "";
+                                        String bookDescription = "";
+                                        String cleanImageUrl = "";
+                                        int avgRating = 0;
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                            JSONObject volumeInfo = jsonObject.getJSONObject("volumeInfo");
+                                            JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
 
                                             try {
-                                                bookName = volumeInfo.getString("title");
-                                                bookAuthor = volumeInfo.getString("authors");
-                                                bookCat = volumeInfo.getJSONArray("categories").getString(0);
+                                                bookName = resultInfo.getString("title");
+                                                //json provided for author is array
+                                                JSONArray authors = resultInfo.getJSONArray("authors");
+
+                                                //if author is only one give me only one
+                                                if(authors.length() == 1){
+                                                    bookAuthor = authors.getString(0);
+                                                }
+                                                //else give me all authors with "," in between
+                                                else{
+                                                    bookAuthor = authors.getString(0) + ", " +authors.getString(1);
+                                                }
+                                                bookCat = resultInfo.getJSONArray("categories").getString(0);
+                                                bookPub = resultInfo.getString("publisher");
+                                                pubDate = resultInfo.getString("publishedDate");
+                                                bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                                                bookDescription = resultInfo.getString("description");
+                                                avgRating = resultInfo.getInt("averageRating");
+                                                cleanImageUrl = bookImage.replace("http", "https");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-//                                            System.out.println(bookName);
-                                            books.add(new BookData(bookName, bookAuthor, bookCat));
-                                            adapt = new BookAdapter(books, getContext());
+                                            System.out.println(bookImage);
+                                            System.out.println(bookDescription);
+                                            System.out.println(avgRating);
+                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
+                                            adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }
                                     } catch (JSONException e) {
