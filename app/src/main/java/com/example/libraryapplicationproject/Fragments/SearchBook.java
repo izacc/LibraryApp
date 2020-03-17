@@ -98,15 +98,17 @@ public class SearchBook extends Fragment {
                                         String bookPub = "";
                                         String pubDate = "";
                                         String bookImage = "";
-                                        String aUrl = "";
+                                        String bookDescription = "";
+                                        String cleanImageUrl = "";
+                                        int avgRating = 0;
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                            JSONObject ResultInfo = jsonObject.getJSONObject("volumeInfo");
+                                            JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
 
                                             try {
-                                                bookName = ResultInfo.getString("title");
+                                                bookName = resultInfo.getString("title");
                                                 //json provided for author is array
-                                                JSONArray authors = ResultInfo.getJSONArray("authors");
+                                                JSONArray authors = resultInfo.getJSONArray("authors");
 
                                                 //if author is only one give me only one
                                                 if(authors.length() == 1){
@@ -116,18 +118,22 @@ public class SearchBook extends Fragment {
                                                 else{
                                                     bookAuthor = authors.getString(0) + ", " +authors.getString(1);
                                                 }
-                                                bookCat = ResultInfo.getJSONArray("categories").getString(0);
-                                                bookPub = ResultInfo.getString("publisher");
-                                                pubDate = ResultInfo.getString("publishedDate");
-                                                bookImage = ResultInfo.getJSONObject("imageLinks").getString("thumbnail");
-                                                 aUrl = bookImage.replace("http", "https");
+                                                bookCat = resultInfo.getJSONArray("categories").getString(0);
+                                                bookPub = resultInfo.getString("publisher");
+                                                pubDate = resultInfo.getString("publishedDate");
+                                                bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                                                bookDescription = resultInfo.getString("description");
+                                                avgRating = resultInfo.getInt("averageRating");
+
+                                                 cleanImageUrl = bookImage.replace("http", "https");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
 
                                             System.out.println(bookImage);
-//
-                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,aUrl));
+                                            System.out.println(bookDescription);
+                                            System.out.println(avgRating);
+                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
                                             adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }

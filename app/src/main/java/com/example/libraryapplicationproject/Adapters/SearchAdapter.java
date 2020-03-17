@@ -1,10 +1,12 @@
 package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
@@ -14,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -50,6 +53,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CustomSear
         holder.bookPub.setText(item.getBookPublisher());
         holder.pubDate.setText(item.getPublishedDate());
         holder.bookCat.setText(item.getBookCat());
+
         //if path is empty give me the placeholder Image instead else place it with its given image from url
         if (item.getImageBook().isEmpty()) {
             holder.bookImage.setImageResource(R.drawable.placeholder);
@@ -67,13 +71,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CustomSear
        return books.size();
     }
 
-    public class CustomSearchHolder extends RecyclerView.ViewHolder {
+    public class CustomSearchHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView bookName;
         protected TextView bookAuthor;
         protected TextView bookPub;
         protected TextView pubDate;
         protected TextView bookCat;
         protected ImageView bookImage;
+
 
         public CustomSearchHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +88,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CustomSear
             this.bookPub = itemView.findViewById(R.id.bookPublisherSearch);
             this.pubDate = itemView.findViewById(R.id.bookPublisherDateSearch);
             this.bookImage = itemView.findViewById(R.id.bookImageSearch);
+            itemView.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View view) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("information", books.get(getAdapterPosition()));
+            Navigation.findNavController(view).navigate(R.id.action_searchBook_to_detailedBook,bundle);
         }
     }
 }
