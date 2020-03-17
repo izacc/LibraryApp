@@ -29,7 +29,7 @@ public class BookData implements Parcelable {
     }
 
 
-
+//keep this importnt for search gives me everything i need so far
     public BookData(String bookName, String bookAuthor, String bookCat,String bookPublisher,String publishedDate, String imageBook, String bookDescription, int bookRating){
         this.bookAuthor = bookAuthor;
         this.bookName = bookName;

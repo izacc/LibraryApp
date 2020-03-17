@@ -124,12 +124,10 @@ public class SearchBook extends Fragment {
                                                 bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
                                                 bookDescription = resultInfo.getString("description");
                                                 avgRating = resultInfo.getInt("averageRating");
-
-                                                 cleanImageUrl = bookImage.replace("http", "https");
+                                                cleanImageUrl = bookImage.replace("http", "https");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-
                                             System.out.println(bookImage);
                                             System.out.println(bookDescription);
                                             System.out.println(avgRating);

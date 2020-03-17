@@ -1,9 +1,12 @@
 package com.example.libraryapplicationproject.Fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +63,6 @@ public class DetailedBook extends Fragment {
          ImageView bookImage = view.findViewById(R.id.detailBookImage);
          RatingBar bookRating = view.findViewById(R.id.ratingBar);
          TextView bookDesc = view.findViewById(R.id.detailBookDesc);
-
          bookName.setText(name);
          bookAuthor.setText(author);
          bookPub.setText(publisher);
