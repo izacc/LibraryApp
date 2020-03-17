@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -25,57 +26,57 @@
         android:id="@+id/bookNameSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
         android:elevation="2dp"
         android:text="TextView"
+        android:textAlignment="textEnd"
         android:textSize="@dimen/bookName"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookImageSearch"
         app:layout_constraintTop_toTopOf="@+id/searCardView" />
 
     <TextView
         android:id="@+id/bookAuthorNameSearch"
-        android:textSize="@dimen/infoBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
         android:elevation="2dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/infoBook"
+        app:layout_constraintStart_toStartOf="@+id/bookNameSearch"
         app:layout_constraintTop_toBottomOf="@+id/bookNameSearch" />
 
     <TextView
         android:id="@+id/bookPublisherSearch"
-        android:textSize="@dimen/infoBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:layout_marginTop="16dp"
         android:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/bookAuthorNameSearch"
+        android:text="TextView"
+        android:textSize="@dimen/infoBook"
+        app:layout_constraintStart_toStartOf="@+id/bookAuthorNameSearch"
         app:layout_constraintTop_toBottomOf="@+id/bookAuthorNameSearch" />
 
     <TextView
         android:id="@+id/bookPublisherDateSearch"
-        android:textSize="@dimen/infoBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:layout_marginTop="16dp"
         android:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/bookPublisherSearch"
+        android:text="TextView"
+        android:textSize="@dimen/infoBook"
+        app:layout_constraintStart_toStartOf="@+id/bookPublisherSearch"
         app:layout_constraintTop_toBottomOf="@+id/bookPublisherSearch" />
 
     <TextView
         android:id="@+id/bookCatSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:elevation="2dp"
         android:text="TextView"
         android:textSize="@dimen/infoBook"
-        app:layout_constraintEnd_toEndOf="@+id/bookPublisherDateSearch"
+        app:layout_constraintStart_toStartOf="@+id/bookPublisherDateSearch"
         app:layout_constraintTop_toBottomOf="@+id/bookPublisherDateSearch" />
 
     <ImageView
