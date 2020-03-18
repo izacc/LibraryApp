@@ -24,15 +24,20 @@
     <fragment
         android:id="@+id/searchBook"
         android:name="com.example.libraryapplicationproject.Fragments.SearchBook"
-        android:label="fragment_search_book"
-        tools:layout="@layout/fragment_search_book" >
+        android:label="Search"
+        tools:layout="@layout/fragment_search_book">
         <action
             android:id="@+id/action_searchBook_to_detailedBook"
-            app:destination="@+id/detailedBook" />
+            app:destination="@id/detailedBook"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/searchBook" />
     </fragment>
     <fragment
         android:id="@+id/detailedBook"
         android:name="com.example.libraryapplicationproject.Fragments.DetailedBook"
-        android:label="fragment_detailed_book"
+        android:label="More Detail"
         tools:layout="@layout/fragment_detailed_book" />
 </navigation>

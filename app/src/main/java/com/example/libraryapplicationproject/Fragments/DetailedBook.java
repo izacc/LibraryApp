@@ -43,7 +43,7 @@ public class DetailedBook extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
+        final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
         name = "";
         author = "";
@@ -89,8 +89,10 @@ public class DetailedBook extends Fragment {
                 DatabaseHelper db = new DatabaseHelper(getContext());
                 db.addBook(new BookData(name, author, desc, 0, img, category));
 
+              //  Navigation.findNavController(view).popBackStack();
             }
         });
+
         return view;
     }
 
