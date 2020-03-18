@@ -89,7 +89,7 @@ public class DetailedBook extends Fragment {
                 DatabaseHelper db = new DatabaseHelper(getContext());
                 db.addBook(new BookData(name, author, desc, 0, img, category));
 
-              //  Navigation.findNavController(view).popBackStack();
+                Navigation.findNavController(view).navigate(R.id.locker);
             }
         });
 
