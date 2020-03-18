@@ -102,12 +102,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addBook(BookData book){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_RATING, book.getBookRating());
         values.put(COLUMN_NAME, book.getBookName());
         values.put(COLUMN_AUTHOR, book.getBookAuthor());
         values.put(COLUMN_DESCRIPTION, book.getBookDescription());
         values.put(COLUMN_RATING, book.getBookRating());
-        values.put(COLUMN_WEBSITE, book.getBookURL());
+        values.put(COLUMN_IMAGE, book.getImageBook());
         db.insert(TABLE_BOOK, null, values);
         db.close();
     }
