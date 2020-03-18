@@ -11,11 +11,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.R;
 import com.squareup.picasso.Picasso;
 
@@ -24,7 +26,13 @@ import com.squareup.picasso.Picasso;
  * A simple {@link Fragment} subclass.
  */
 public class DetailedBook extends Fragment {
-
+    public String name = "";
+    public  String author = "";
+    public String publisher = "";
+    public String date = "";
+    public String category = "";
+    public String img = "";
+    public String desc = "";
 
     public DetailedBook() {
         // Required empty public constructor
@@ -36,13 +44,14 @@ public class DetailedBook extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
-        String name = "";
-        String author = "";
-        String publisher = "";
-        String date = "";
-        String category = "";
-        String img = "";
-        String desc = "";
+        Button favButton = view.findViewById(R.id.favouritesButton);
+        name = "";
+        author = "";
+        publisher = "";
+        date = "";
+        category = "";
+        img = "";
+        desc = "";
         int rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
@@ -72,6 +81,16 @@ public class DetailedBook extends Fragment {
         else{ Picasso.get().load(img).into(bookImage);}
         bookRating.setRating(rating);
         bookDesc.setText(desc);
+
+
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseHelper db = new DatabaseHelper(getContext());
+                db.addBook(new BookData(name, author, desc, 0, img, category));
+
+            }
+        });
         return view;
     }
 
