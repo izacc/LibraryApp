@@ -37,13 +37,14 @@ public class Favorites extends Fragment {
         seedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseHelper db = new DatabaseHelper(getContext());
+                /*DatabaseHelper db = new DatabaseHelper(getContext());
                 db.addBook(new BookData("placeholder1","Author1","publisher1", 0, "www"));
                 db.addBook(new BookData("placeholder2","Author2","publisher1" ,0, "www"));
                 db.addBook(new BookData("placeholder3","Author3","publisher1" ,0, "www"));
                 db.addBook(new BookData("placeholder4","Author4","publisher1" ,0, "www"));
                 db.addBook(new BookData("placeholder5","Author5","publisher1" ,0, "www"));
                 db.addBook(new BookData("placeholder6","Author6","publisher1" ,0, "www"));
+                db.close();*/
             }
         });
         return view;
