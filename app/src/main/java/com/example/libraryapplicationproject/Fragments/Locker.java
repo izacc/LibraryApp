@@ -41,6 +41,7 @@ public class Locker extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.lockerRecyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        db.close();
         return view;
     }
 

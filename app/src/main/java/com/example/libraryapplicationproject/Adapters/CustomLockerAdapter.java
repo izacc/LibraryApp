@@ -197,6 +197,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
                 }
             });
+            db.close();
         }
 
         public CustomViewHolder(final View itemView) {

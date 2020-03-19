@@ -2,6 +2,7 @@ package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     public int getItemCount() {
         //dont be stupid  and forget to change this Written by Yonis For Yonis
         //good job u didnt forget this time :D
+        //Lmao
         return books.size();
     }
 
