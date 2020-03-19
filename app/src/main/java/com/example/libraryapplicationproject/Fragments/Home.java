@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,6 +29,7 @@ import com.example.libraryapplicationproject.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ public class Home extends Fragment {
     private RecyclerView recycle2;
     private RecyclerView recycle3;
     private RecyclerView recycle4;
+
 
     public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Political Science", "Philosophy", "Architecture", "Computers",
             "Literary Collections", "Mathematics", "English literature", "Fiction", "Drama", "Juvenile", "Computer Programs"));
@@ -88,6 +91,10 @@ public class Home extends Fragment {
         manager4.setOrientation(RecyclerView.HORIZONTAL);
         recycle4.setLayoutManager(manager4);
 
+        TextView cat1 = view.findViewById(R.id.category1);
+        TextView cat2 = view.findViewById(R.id.category2);
+        TextView cat3 = view.findViewById(R.id.category3);
+        TextView cat4 = view.findViewById(R.id.category4);
 
         if(requestQueue == null){
             requestQueue = Volley.newRequestQueue(getContext());
@@ -102,16 +109,16 @@ public class Home extends Fragment {
         Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categories.get(randomCategory.nextInt(categories.size())));
 
 
-            adapterPopulater(recycle);
-            adapterPopulater(recycle2);
-            adapterPopulater(recycle3);
-            adapterPopulater(recycle4);
+            adapterPopulater(recycle,cat1);
+            adapterPopulater(recycle2,cat2);
+            adapterPopulater(recycle3,cat3);
+            adapterPopulater(recycle4,cat4);
 
 
         return view;
     }
 
-    public void adapterPopulater(final RecyclerView recycle) {
+    public void adapterPopulater(final RecyclerView recycle, TextView category) {
        String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
        while (queuedCategories.contains(categorySearch)){
            categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
@@ -119,6 +126,7 @@ public class Home extends Fragment {
        if (!queuedCategories.contains(categorySearch))  {
            queuedCategories.add(categorySearch);
        }
+       category.setText(categorySearch.replace("%20", " "));
 
        Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categorySearch);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
