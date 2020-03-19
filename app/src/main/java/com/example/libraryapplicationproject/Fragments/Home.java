@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Debug;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.Console;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -113,6 +116,7 @@ public class Home extends Fragment {
             adapterPopulater(recycle2,cat2);
             adapterPopulater(recycle3,cat3);
             adapterPopulater(recycle4,cat4);
+            queuedCategories.clear();
 
 
         return view;
@@ -125,8 +129,10 @@ public class Home extends Fragment {
        }
        if (!queuedCategories.contains(categorySearch))  {
            queuedCategories.add(categorySearch);
+           category.setText(categorySearch.replace("%20", " "));
        }
-       category.setText(categorySearch.replace("%20", " "));
+
+
 
        Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categorySearch);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
@@ -140,11 +146,12 @@ public class Home extends Fragment {
                     String bookName = "";
                     String bookPub = "";
                     String pubDate = "";
-                    String bookImage = "";
+                    String bookImage;
                     String bookDescription = "";
-                    String cleanImageUrl = "";
+                    String cleanImageUrl;
                     int avgRating = 0;
                     ArrayList<BookData> books = new ArrayList<>();
+
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
@@ -165,30 +172,40 @@ public class Home extends Fragment {
                             bookCat = resultInfo.getJSONArray("categories").getString(0);
                             bookPub = resultInfo.getString("publisher");
                             pubDate = resultInfo.getString("publishedDate");
-                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
                             bookDescription = resultInfo.getString("description");
                             avgRating = resultInfo.getInt("averageRating");
-                            cleanImageUrl = bookImage.replace("http", "https");
+
+
+
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        System.out.println(bookImage);
-                        System.out.println(bookDescription);
-                        System.out.println(avgRating);
+                        //Moved out of try and it works now
+                        bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                        cleanImageUrl = bookImage.replace("http", "https");
+
                         books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating));
                         BookAdapter adapt = new BookAdapter(books, getContext());
                         recycle.setAdapter(adapt);
+
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
         });
+
         requestQueue.add(jsonObjectRequest);
     }
 }
