@@ -134,7 +134,7 @@ public class Home extends Fragment {
 
 
 
-       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categorySearch);
+       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categorySearch + "&maxResults=40");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
