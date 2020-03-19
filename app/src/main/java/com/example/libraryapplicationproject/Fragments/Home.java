@@ -141,14 +141,14 @@ public class Home extends Fragment {
                 try {
                     JSONArray jsonArray = response.getJSONArray("items");
                     //data being retrieved from json
-                    String bookAuthor = "";
-                    String bookCat = "";
-                    String bookName = "";
-                    String bookPub = "";
-                    String pubDate = "";
-                    String bookImage;
-                    String bookDescription = "";
-                    String cleanImageUrl;
+                    String bookAuthor = "N/A";
+                    String bookCat = "N/A";
+                    String bookName = "N/A";
+                    String bookPub = "N/A";
+                    String pubDate = "N/A";
+                    String bookImage = "N/A";
+                    String bookDescription = "N/A";
+                    String cleanImageUrl = "N/A";
                     int avgRating = 0;
                     ArrayList<BookData> books = new ArrayList<>();
 
@@ -179,7 +179,10 @@ public class Home extends Fragment {
 
 
 
+
+
                         } catch (JSONException e) {
+
                             e.printStackTrace();
                         }
                         //Moved out of try and it works now
