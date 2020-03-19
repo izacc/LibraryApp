@@ -18,17 +18,6 @@ public class BookData implements Parcelable {
     public String publishedDate;
 
 
-    //this is a changed method to test my functionality
-    public BookData(String bookName, String bookAuthor, String bookDescription, int bookImage, int bookRating) {
-        this.bookImage = bookImage;
-        this.bookName = bookName;
-        this.bookAuthor = bookAuthor;
-        this.bookDescription = bookDescription;
-        this.bookRating = bookRating;
-
-    }
-
-
 //keep this importnt for search gives me everything i need so far
     public BookData(String bookName, String bookAuthor, String bookCat,String bookPublisher,String publishedDate, String imageBook, String bookDescription, int bookRating){
         this.bookAuthor = bookAuthor;
@@ -60,12 +49,6 @@ public class BookData implements Parcelable {
         this.imageBook = imageBook;
     }
 
-    public BookData(String bookName, String bookAuthor, String publisher2, int bookImage) {
-        this.bookName = bookName;
-        this.bookAuthor = bookAuthor;
-        this.bookDescription = publisher2;
-        this.bookImage = bookImage;
-    }
     public int getBookRating() {return bookRating;}
     public void setBookRating(int bookRating) {this.bookRating = bookRating;}
     public int getBookID() {return bookID;}
