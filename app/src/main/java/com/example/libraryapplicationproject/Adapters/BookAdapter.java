@@ -51,8 +51,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
 
         BookData item = books.get(position);
         holder.name.setText(item.getBookName());
-        holder.author.setText(item.getBookAuthor());
-        holder.category.setText(item.getBookCat());
         if (item.getImageBook().isEmpty()) {
             holder.image.setImageResource(R.drawable.placeholder);
         } else{
@@ -77,14 +75,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
      class ViewHolder extends RecyclerView.ViewHolder{
          protected TextView name;
          protected ImageView image;
-         protected TextView author;
-         protected TextView category;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.name = itemView.findViewById(R.id.name);
             this.image = itemView.findViewById(R.id.bookImage);
-            this.author = itemView.findViewById(R.id.author);
-            this.category = itemView.findViewById(R.id.cat);
 
         }
     }

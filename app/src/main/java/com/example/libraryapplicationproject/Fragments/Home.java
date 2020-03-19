@@ -100,7 +100,7 @@ public class Home extends Fragment {
         //EACH WILL RETURN A DIFFERENT SUBJECT
         Uri url1 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Computer%20programs");
         Uri url2 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:fiction");
-        Uri url3 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Business%20&%20Economics%20/%20Entrepreneurship");
+        Uri url3 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Juvenile");
         Uri url4 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Drama");
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url1.toString(), null, new Response.Listener<JSONObject>() {
