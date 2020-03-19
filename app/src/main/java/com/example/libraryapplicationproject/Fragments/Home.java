@@ -29,7 +29,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 
 /**
@@ -43,18 +46,16 @@ public class Home extends Fragment {
     //request.
     private RequestQueue requestQueue;
     //recycler adapter
-    private BookAdapter adapt;
+
     private RecyclerView recycle;
-
-    private BookAdapter adapt2;
     private RecyclerView recycle2;
-
-    private BookAdapter adapt3;
     private RecyclerView recycle3;
-
-    private BookAdapter adapt4;
     private RecyclerView recycle4;
 
+    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Political Science", "Philosophy", "Architecture", "Computers",
+            "Literary Collections", "Mathematics", "English literature", "Fiction", "Drama", "Juvenile", "Computer Programs"));
+    public static ArrayList<String> queuedCategories = new ArrayList<>();
+    public static Random randomCategory = new Random();
     public Home() {
         // Required empty public constructor
     }
@@ -66,10 +67,6 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
          View view =inflater.inflate(R.layout.fragment_home, container, false);
          //array list to hold hour results
-        final ArrayList<BookData> books = new ArrayList<>();
-        final ArrayList<BookData> books2 = new ArrayList<>();
-        final ArrayList<BookData> books3 = new ArrayList<>();
-        final ArrayList<BookData> books4 = new ArrayList<>();
 
         recycle = view.findViewById(R.id.recyclerFirstRow);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -96,14 +93,35 @@ public class Home extends Fragment {
             requestQueue = Volley.newRequestQueue(getContext());
         }
 
+        //If there is a way to pull all categories do that instead
+
+
+
          //URLS FOR EACH RECYCLER VIEW
         //EACH WILL RETURN A DIFFERENT SUBJECT
-        Uri url1 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Computer%20programs");
-        Uri url2 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:fiction");
-        Uri url3 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Juvenile");
-        Uri url4 = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:Drama");
+        Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categories.get(randomCategory.nextInt(categories.size())));
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url1.toString(), null, new Response.Listener<JSONObject>() {
+
+            adapterPopulater(recycle);
+            adapterPopulater(recycle2);
+            adapterPopulater(recycle3);
+            adapterPopulater(recycle4);
+
+
+        return view;
+    }
+
+    public void adapterPopulater(final RecyclerView recycle) {
+       String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
+       while (queuedCategories.contains(categorySearch)){
+           categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
+       }
+       if (!queuedCategories.contains(categorySearch))  {
+           queuedCategories.add(categorySearch);
+       }
+
+       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categorySearch);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -118,6 +136,7 @@ public class Home extends Fragment {
                     String bookDescription = "";
                     String cleanImageUrl = "";
                     int avgRating = 0;
+                    ArrayList<BookData> books = new ArrayList<>();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
@@ -128,12 +147,12 @@ public class Home extends Fragment {
                             JSONArray authors = resultInfo.getJSONArray("authors");
 
                             //if author is only one give me only one
-                            if(authors.length() == 1){
+                            if (authors.length() == 1) {
                                 bookAuthor = authors.getString(0);
                             }
                             //else give me all authors with "," in between
-                            else{
-                                bookAuthor = authors.getString(0) + ", " +authors.getString(1);
+                            else {
+                                bookAuthor = authors.getString(0) + ", " + authors.getString(1);
                             }
                             bookCat = resultInfo.getJSONArray("categories").getString(0);
                             bookPub = resultInfo.getString("publisher");
@@ -148,8 +167,8 @@ public class Home extends Fragment {
                         System.out.println(bookImage);
                         System.out.println(bookDescription);
                         System.out.println(avgRating);
-                        books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
-                        adapt = new BookAdapter(books, getContext());
+                        books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating));
+                        BookAdapter adapt = new BookAdapter(books, getContext());
                         recycle.setAdapter(adapt);
                     }
                 } catch (JSONException e) {
@@ -163,202 +182,5 @@ public class Home extends Fragment {
             }
         });
         requestQueue.add(jsonObjectRequest);
-
-
-
-
-
-
-        JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.GET, url2.toString(), null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("items");
-                    //data being retrieved from json
-                    String bookAuthor = "";
-                    String bookCat = "";
-                    String bookName = "";
-                    String bookPub = "";
-                    String pubDate = "";
-                    String bookImage = "";
-                    String bookDescription = "";
-                    String cleanImageUrl = "";
-                    int avgRating = 0;
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
-
-                        try {
-                            bookName = resultInfo.getString("title");
-                            //json provided for author is array
-                            JSONArray authors = resultInfo.getJSONArray("authors");
-
-                            //if author is only one give me only one
-                            if(authors.length() == 1){
-                                bookAuthor = authors.getString(0);
-                            }
-                            //else give me all authors with "," in between
-                            else{
-                                bookAuthor = authors.getString(0) + ", " +authors.getString(1);
-                            }
-                            bookCat = resultInfo.getJSONArray("categories").getString(0);
-                            bookPub = resultInfo.getString("publisher");
-                            pubDate = resultInfo.getString("publishedDate");
-                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
-                            bookDescription = resultInfo.getString("description");
-                            avgRating = resultInfo.getInt("averageRating");
-                            cleanImageUrl = bookImage.replace("http", "https");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(bookImage);
-                        System.out.println(bookDescription);
-                        System.out.println(avgRating);
-                        books2.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
-                        adapt2 = new BookAdapter(books2, getContext());
-                        recycle2.setAdapter(adapt2);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        requestQueue.add(jsonObjectRequest2);
-
-
-
-
-        JsonObjectRequest jsonObjectRequest3 = new JsonObjectRequest(Request.Method.GET, url3.toString(), null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("items");
-                    //data being retrieved from json
-                    String bookAuthor = "";
-                    String bookCat = "";
-                    String bookName = "";
-                    String bookPub = "";
-                    String pubDate = "";
-                    String bookImage = "";
-                    String bookDescription = "";
-                    String cleanImageUrl = "";
-                    int avgRating = 0;
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
-
-                        try {
-                            bookName = resultInfo.getString("title");
-                            //json provided for author is array
-                            JSONArray authors = resultInfo.getJSONArray("authors");
-
-                            //if author is only one give me only one
-                            if(authors.length() == 1){
-                                bookAuthor = authors.getString(0);
-                            }
-                            //else give me all authors with "," in between
-                            else{
-                                bookAuthor = authors.getString(0) + ", " +authors.getString(1);
-                            }
-                            bookCat = resultInfo.getJSONArray("categories").getString(0);
-                            bookPub = resultInfo.getString("publisher");
-                            pubDate = resultInfo.getString("publishedDate");
-                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
-                            bookDescription = resultInfo.getString("description");
-                            avgRating = resultInfo.getInt("averageRating");
-                            cleanImageUrl = bookImage.replace("http", "https");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(bookImage);
-                        System.out.println(bookDescription);
-                        System.out.println(avgRating);
-                        books3.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
-                        adapt3 = new BookAdapter(books3, getContext());
-                        recycle3.setAdapter(adapt3);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        requestQueue.add(jsonObjectRequest3);
-
-
-
-
-
-        JsonObjectRequest jsonObjectRequest4 = new JsonObjectRequest(Request.Method.GET, url4.toString(), null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("items");
-                    //data being retrieved from json
-                    String bookAuthor = "";
-                    String bookCat = "";
-                    String bookName = "";
-                    String bookPub = "";
-                    String pubDate = "";
-                    String bookImage = "";
-                    String bookDescription = "";
-                    String cleanImageUrl = "";
-                    int avgRating = 0;
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
-
-                        try {
-                            bookName = resultInfo.getString("title");
-                            //json provided for author is array
-                            JSONArray authors = resultInfo.getJSONArray("authors");
-
-                            //if author is only one give me only one
-                            if(authors.length() == 1){
-                                bookAuthor = authors.getString(0);
-                            }
-                            //else give me all authors with "," in between
-                            else{
-                                bookAuthor = authors.getString(0) + ", " +authors.getString(1);
-                            }
-                            bookCat = resultInfo.getJSONArray("categories").getString(0);
-                            bookPub = resultInfo.getString("publisher");
-                            pubDate = resultInfo.getString("publishedDate");
-                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
-                            bookDescription = resultInfo.getString("description");
-                            avgRating = resultInfo.getInt("averageRating");
-                            cleanImageUrl = bookImage.replace("http", "https");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(bookImage);
-                        System.out.println(bookDescription);
-                        System.out.println(avgRating);
-                        books4.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
-                        adapt4 = new BookAdapter(books4, getContext());
-                        recycle4.setAdapter(adapt4);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        requestQueue.add(jsonObjectRequest4);
-        return view;
     }
-
 }
