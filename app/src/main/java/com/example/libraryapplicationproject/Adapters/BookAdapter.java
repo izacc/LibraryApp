@@ -25,7 +25,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     /**
      * @author yonis
      * constructor
-     * @since 2020-03-1
+     * @since 2020-03-15
      * @param books ArrayList of books
      * @param context allows access to resources from classes and starts activities
      */
@@ -44,7 +44,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
 
 
     /**
-     * @since 2020-03-1
+     * @since 2020-03-15
      * @param holder ViewHolder class
      * @param position position of list
      */
@@ -63,7 +63,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     }
 
     /**
-     * @since 2020-03-1
+     * @since 2020-03-15
      * the size of the arrayList
      * @return ArrayList.size
      */
