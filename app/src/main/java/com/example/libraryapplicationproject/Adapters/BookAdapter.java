@@ -2,7 +2,6 @@ package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +56,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         if (item.getImageBook().isEmpty()) {
             holder.image.setImageResource(R.drawable.placeholder);
         } else{
-            Picasso.get().load(item.getImageBook()).into(holder.image);
+            Picasso.get().load(item.getImageBook()).fit().centerInside().into(holder.image);
         }
 
 

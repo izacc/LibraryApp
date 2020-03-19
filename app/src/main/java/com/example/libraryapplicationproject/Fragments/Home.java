@@ -174,13 +174,6 @@ public class Home extends Fragment {
                             pubDate = resultInfo.getString("publishedDate");
                             bookDescription = resultInfo.getString("description");
                             avgRating = resultInfo.getInt("averageRating");
-
-
-
-
-
-
-
                         } catch (JSONException e) {
 
                             e.printStackTrace();

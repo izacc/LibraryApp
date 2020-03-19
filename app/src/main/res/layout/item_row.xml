@@ -45,8 +45,8 @@
 
     <ImageView
         android:id="@+id/bookImage"
-        android:layout_width="346dp"
-        android:layout_height="334dp"
+        android:layout_width="340dp"
+        android:layout_height="340dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="32dp"
         android:elevation="@dimen/elevation"

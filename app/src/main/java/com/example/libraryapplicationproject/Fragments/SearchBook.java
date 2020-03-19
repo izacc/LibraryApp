@@ -120,13 +120,13 @@ public class SearchBook extends Fragment {
                                                 bookCat = resultInfo.getJSONArray("categories").getString(0);
                                                 bookPub = resultInfo.getString("publisher");
                                                 pubDate = resultInfo.getString("publishedDate");
-                                                bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
                                                 bookDescription = resultInfo.getString("description");
                                                 avgRating = resultInfo.getInt("averageRating");
-                                                cleanImageUrl = bookImage.replace("http", "https");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
+                                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                                            cleanImageUrl = bookImage.replace("http", "https");
                                             System.out.println(bookImage);
                                             System.out.println(bookDescription);
                                             System.out.println(avgRating);
