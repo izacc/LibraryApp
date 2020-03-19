@@ -1,6 +1,7 @@
 package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
@@ -72,7 +74,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         return books.size();
     }
 
-     class ViewHolder extends RecyclerView.ViewHolder{
+     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
          protected TextView name;
          protected ImageView image;
         public ViewHolder(@NonNull View itemView) {
@@ -80,6 +82,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
             this.name = itemView.findViewById(R.id.name);
             this.image = itemView.findViewById(R.id.bookImage);
 
+            itemView.setOnClickListener(this);
         }
-    }
+         @Override
+         public void onClick(View view) {
+             Bundle bundle = new Bundle();
+             bundle.putParcelable("information", books.get(getAdapterPosition()));
+             Navigation.findNavController(view).navigate(R.id.action_home_to_detailedBook,bundle);
+         }
+     }
 }
