@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -51,8 +52,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         BookData item = books.get(position);
         holder.name.setText(item.getBookName());
         holder.author.setText(item.getBookAuthor());
-        holder.image.setImageResource(item.getBookImage());
         holder.category.setText(item.getBookCat());
+        if (item.getImageBook().isEmpty()) {
+            holder.image.setImageResource(R.drawable.placeholder);
+        } else{
+            Picasso.get().load(item.getImageBook()).into(holder.image);
+        }
 
 
     }
