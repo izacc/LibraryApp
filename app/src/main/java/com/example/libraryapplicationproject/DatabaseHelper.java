@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_BOOK = "book";
     public static final String TABLE_LOCKER = "locker";
     public static final String TABLE_FAVORITES = "favorites";
-    public static final String TABLE_IMAGE = "image";
+
 
 
   /*
@@ -53,6 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_AUTHOR = "bookauthor";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_WEBSITE= "website";
+    public static final String COLUMN_IMAGE = "image";
 
     /*
         Image table
@@ -69,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CREATE_BOOK_TABLE = "CREATE TABLE " +
             TABLE_BOOK + "( " + BOOK_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_AUTHOR + " TEXT," + COLUMN_DESCRIPTION
-            + " TEXT," + COLUMN_RATING + " INTEGER," + COLUMN_WEBSITE + " TEXT);";
+            + " TEXT," + COLUMN_RATING + " INTEGER," +  COLUMN_IMAGE + " TEXT," + COLUMN_WEBSITE + " TEXT);";
 
     public static final String CREATE_LOCKER_TABLE = "CREATE TABLE " +
             TABLE_LOCKER + "( "  + BOOK_ID + " INTEGER," + "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
@@ -101,12 +102,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addBook(BookData book){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_RATING, book.getBookRating());
         values.put(COLUMN_NAME, book.getBookName());
         values.put(COLUMN_AUTHOR, book.getBookAuthor());
         values.put(COLUMN_DESCRIPTION, book.getBookDescription());
         values.put(COLUMN_RATING, book.getBookRating());
-        values.put(COLUMN_WEBSITE, book.getBookURL());
+        values.put(COLUMN_IMAGE, book.getImageBook());
         db.insert(TABLE_BOOK, null, values);
         db.close();
     }
@@ -129,7 +129,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5));
+                    cursor.getString(5),
+                    cursor.getString(6));
         }
         db.close();
         return book;
@@ -147,7 +148,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5)));
+                    cursor.getString(5),
+                    cursor.getString(6)));
         }
         db.close();
         return books;
@@ -170,7 +172,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5)));
+                    cursor.getString(5),
+                    cursor.getString(6)));
         }
         db.close();
         return books;
@@ -191,7 +194,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5));
+                    cursor.getString(5),
+                    cursor.getString(6));
         }
         db.close();
         return book;
@@ -214,7 +218,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5)));
+                    cursor.getString(5),
+                    cursor.getString(6)));
         }
         db.close();
         return books;
@@ -235,7 +240,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getInt(4),
-                    cursor.getString(5));
+                    cursor.getString(5),
+                    cursor.getString(6));
         }
         db.close();
         return book;

@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
 
+import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,6 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
     public CustomLockerAdapter(ArrayList<BookData> books, Context context) {
         this.books = books;
         this.context = context;
-
     }
 
 
@@ -40,15 +42,18 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
-        DatabaseHelper db = new DatabaseHelper(context);
+
         final BookData book = books.get(position);
         holder.name.setText(book.getBookName());
         holder.author.setText(book.getBookAuthor());
         holder.description.setText(book.getBookDescription());
+        //not properly grabbing the image url
         //placeholder for image
-        holder.bookImage.setImageResource(R.drawable.placeholder);
+         if (book.imageBook.isEmpty()) { holder.bookImage.setImageResource(R.drawable.placeholder);}
+                else {
+             Picasso.get().load(book.imageBook).into(holder.bookImage);
+         }
         holder.RatingSystemReader(book.getBookRating());
-        db.close();
     }
 
     @Override
@@ -192,6 +197,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
                 }
             });
+            db.close();
         }
 
         public CustomViewHolder(final View itemView) {

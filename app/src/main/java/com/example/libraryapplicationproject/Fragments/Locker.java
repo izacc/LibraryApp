@@ -1,4 +1,4 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Fragments;
 
 
 import android.os.Bundle;
@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.libraryapplicationproject.Adapters.CustomLockerAdapter;
+import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,7 @@ public class Locker extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.lockerRecyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        db.close();
         return view;
     }
 

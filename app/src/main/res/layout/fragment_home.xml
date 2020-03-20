@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
 
-    tools:context=".Home">
+    tools:context=".Fragments.Home">
 
 
     <ScrollView
@@ -19,25 +19,53 @@
             android:orientation="vertical" >
 
 
-        <androidx.recyclerview.widget.RecyclerView
+            <TextView
+                android:id="@+id/category1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFirstRow"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
+            <TextView
+                android:id="@+id/category2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSecondRow"
         android:layout_marginTop="@dimen/topOfRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
+            <TextView
+                android:id="@+id/category3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerThirdRow"
         android:layout_marginTop="@dimen/topOfRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
+            <TextView
+                android:id="@+id/category4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFourthRow"
         android:layout_marginTop="@dimen/topOfRecycler"
         android:layout_width="wrap_content"

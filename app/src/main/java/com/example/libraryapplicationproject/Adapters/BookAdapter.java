@@ -1,7 +1,7 @@
-package com.example.libraryapplicationproject;
+package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
-import android.text.Layout;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
+import com.example.libraryapplicationproject.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
@@ -22,7 +25,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     /**
      * @author yonis
      * constructor
-     * @since 2020-03-1
+     * @since 2020-03-15
      * @param books ArrayList of books
      * @param context allows access to resources from classes and starts activities
      */
@@ -31,13 +34,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         this.context = context;
     }
 
-    /**
-     * @author Yonis Sheek
-     * @since 2020-03-1
-     * @param parent
-     * @param viewType
-     * @return ViewHolder(view)
-     */
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,7 +44,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
 
 
     /**
-     * @since 2020-03-1
+     * @since 2020-03-15
      * @param holder ViewHolder class
      * @param position position of list
      */
@@ -56,15 +53,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
 
         BookData item = books.get(position);
         holder.name.setText(item.getBookName());
-        holder.author.setText(item.getBookAuthor());
-        holder.image.setImageResource(item.getBookImage());
-
+        if (item.getImageBook().isEmpty()) {
+            holder.image.setImageResource(R.drawable.placeholder);
+        } else{
+            Picasso.get().load(item.getImageBook()).fit().centerInside().into(holder.image);
+        }
 
 
     }
 
     /**
-     * @since 2020-03-1
+     * @since 2020-03-15
      * the size of the arrayList
      * @return ArrayList.size
      */
@@ -72,21 +71,25 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
     public int getItemCount() {
         //dont be stupid  and forget to change this Written by Yonis For Yonis
         //good job u didnt forget this time :D
+        //Lmao
         return books.size();
     }
 
-     class ViewHolder extends RecyclerView.ViewHolder{
+     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
          protected TextView name;
          protected ImageView image;
-         protected TextView author;
-         protected TextView category;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.name = itemView.findViewById(R.id.name);
             this.image = itemView.findViewById(R.id.bookImage);
-            this.author = itemView.findViewById(R.id.author);
-            this.category = itemView.findViewById(R.id.cat);
 
+            itemView.setOnClickListener(this);
         }
-    }
+         @Override
+         public void onClick(View view) {
+             Bundle bundle = new Bundle();
+             bundle.putParcelable("information", books.get(getAdapterPosition()));
+             Navigation.findNavController(view).navigate(R.id.action_home_to_detailedBook,bundle);
+         }
+     }
 }
