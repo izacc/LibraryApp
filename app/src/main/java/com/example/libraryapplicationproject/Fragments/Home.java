@@ -58,8 +58,7 @@ public class Home extends Fragment {
     private RecyclerView recycle4;
 
 
-    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Political Science", "Philosophy", "Architecture", "Computers",
-            "Literary Collections", "Mathematics", "English literature", "Fiction", "Drama", "Juvenile", "Computer Programs"));
+    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers", "Fiction", "Drama", "Juvenile", "Computer Programs"));
     public static ArrayList<String> queuedCategories = new ArrayList<>();
     public static Random randomCategory = new Random();
     public Home() {
