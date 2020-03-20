@@ -58,8 +58,7 @@ public class Home extends Fragment {
     private RecyclerView recycle4;
 
 
-    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Political Science", "Philosophy", "Architecture", "Computers",
-            "Literary Collections", "Mathematics", "English literature", "Fiction", "Drama", "Juvenile", "Computer Programs"));
+    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers", "Fiction", "Drama", "Juvenile", "Computer Programs"));
     public static ArrayList<String> queuedCategories = new ArrayList<>();
     public static Random randomCategory = new Random();
     public Home() {
@@ -138,18 +137,20 @@ public class Home extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
+                //data being retrieved from json
+                String bookAuthor = "N/A";
+                String bookCat = "N/A";
+                String bookName = "N/A";
+                String bookPub = "N/A";
+                String pubDate = "N/A";
+                String bookImage = "N/A";
+                String bookDescription = "N/A";
+                String cleanImageUrl = "N/A";
+                int avgRating = 0;
                 try {
                     JSONArray jsonArray = response.getJSONArray("items");
-                    //data being retrieved from json
-                    String bookAuthor = "N/A";
-                    String bookCat = "N/A";
-                    String bookName = "N/A";
-                    String bookPub = "N/A";
-                    String pubDate = "N/A";
-                    String bookImage = "N/A";
-                    String bookDescription = "N/A";
-                    String cleanImageUrl = "N/A";
-                    int avgRating = 0;
+
                     ArrayList<BookData> books = new ArrayList<>();
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -174,13 +175,6 @@ public class Home extends Fragment {
                             pubDate = resultInfo.getString("publishedDate");
                             bookDescription = resultInfo.getString("description");
                             avgRating = resultInfo.getInt("averageRating");
-
-
-
-
-
-
-
                         } catch (JSONException e) {
 
                             e.printStackTrace();

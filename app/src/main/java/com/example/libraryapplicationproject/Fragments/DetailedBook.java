@@ -45,13 +45,13 @@ public class DetailedBook extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
-        name = "";
-        author = "";
-        publisher = "";
-        date = "";
-        category = "";
-        img = "";
-        desc = "";
+        name = "N/A";
+        author = "N/A";
+        publisher = "N/A";
+        date = "N/A";
+        category = "N/A";
+        img = "N/A";
+        desc = "N/A";
         int rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
