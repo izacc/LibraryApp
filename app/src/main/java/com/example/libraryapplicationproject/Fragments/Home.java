@@ -141,7 +141,7 @@ public class Home extends Fragment {
     public void AdapterPopulate(final RecyclerView recycle, TextView category, int categoryNumber) {
         category.setText(queuedCategories.get(categoryNumber).replace("%20", " "));
 
-       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + queuedCategories.get(categoryNumber) + "&maxResults=40");
+       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + queuedCategories.get(categoryNumber) );
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

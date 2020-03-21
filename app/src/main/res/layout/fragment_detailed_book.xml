@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:layout_height="wrap_content"
     tools:context=".Fragments.DetailedBook">
 
@@ -14,7 +15,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
-        app:cardBackgroundColor="@color/cardview_dark_background"
+        app:cardBackgroundColor="@color/colorPrimary"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,6 +62,7 @@
         android:elevation="@dimen/elevation"
         android:maxLines="1"
         android:text="TextView"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/detailBookImage"
         app:layout_constraintTop_toTopOf="@+id/cardView" />
@@ -74,6 +76,7 @@
         android:elevation="@dimen/elevation"
         android:maxLines="1"
         android:text="TextView"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/detailBookName"
         app:layout_constraintTop_toBottomOf="@+id/detailBookName" />
@@ -87,6 +90,7 @@
         android:elevation="@dimen/elevation"
         android:maxLines="1"
         android:text="TextView"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/detailBookAuthor"
         app:layout_constraintTop_toBottomOf="@+id/detailBookAuthor" />
@@ -99,6 +103,7 @@
         android:elevation="@dimen/elevation"
         android:maxLines="1"
         android:text="TextView"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/detailBookPublisher"
         app:layout_constraintTop_toBottomOf="@+id/detailBookPublisher" />
@@ -111,14 +116,15 @@
         android:elevation="@dimen/elevation"
         android:maxLines="1"
         android:text="TextView"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/detailBookPubDate"
         app:layout_constraintTop_toBottomOf="@+id/detailBookPubDate" />
 
     <ImageView
         android:id="@+id/bookUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:elevation="@dimen/elevation"
@@ -130,18 +136,22 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
         android:elevation="2dp"
         android:isIndicator="true"
         android:numStars="5"
+        android:stepSize=".5"
         android:rating="3.4"
-        android:scaleX=".5"
-        android:scaleY=".5"
+        android:scaleX=".7"
+        android:scaleY=".7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/detailBookImage"
-        app:layout_constraintTop_toBottomOf="@+id/detailBookCat" />
+        app:layout_constraintTop_toBottomOf="@+id/detailBookCat"
+       android:progressBackgroundTint="#ffff"
+        android:progressTint="#FFD700"
+       />
 
     <TextView
         android:id="@+id/detailBookDesc"
@@ -154,6 +164,7 @@
         android:elevation="@dimen/elevation"
         android:maxLines="8"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
