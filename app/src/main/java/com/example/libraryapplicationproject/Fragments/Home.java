@@ -177,7 +177,7 @@ public class Home extends Fragment {
                             bookDescription = resultInfo.getString("description");
                             avgRating = resultInfo.getInt("averageRating");
                             purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
-
+                            
 
 
 
@@ -186,7 +186,7 @@ public class Home extends Fragment {
 
 
                         } catch (JSONException e) {
-
+                            purchaseURL = "";
                             e.printStackTrace();
                         }
                         //Moved out of try and it works now

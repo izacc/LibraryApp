@@ -128,6 +128,7 @@ public class SearchBook extends Fragment {
                                                 cleanImageUrl = bookImage.replace("http", "https");
                                                 purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
                                             } catch (JSONException e) {
+                                                purchaseURL = "";
                                                 e.printStackTrace();
                                             }
 
@@ -136,6 +137,7 @@ public class SearchBook extends Fragment {
                                             recycle.setAdapter(adapt);
                                         }
                                     } catch (JSONException e) {
+
                                         e.printStackTrace();
                                     }
                                 }
