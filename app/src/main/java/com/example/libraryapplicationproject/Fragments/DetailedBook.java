@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.DatabaseHelper;
@@ -33,6 +34,8 @@ public class DetailedBook extends Fragment {
     public String category = "";
     public String img = "";
     public String desc = "";
+    public String URL = "";
+
 
     public DetailedBook() {
         // Required empty public constructor
@@ -45,6 +48,7 @@ public class DetailedBook extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
+        ImageView storeButton = view.findViewById(R.id.bookUrl);
         name = "N/A";
         author = "N/A";
         publisher = "N/A";
@@ -52,6 +56,7 @@ public class DetailedBook extends Fragment {
         category = "N/A";
         img = "N/A";
         desc = "N/A";
+        URL = "";
         int rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
@@ -62,6 +67,7 @@ public class DetailedBook extends Fragment {
             category = data.getBookCat();
             img = data.getImageBook();
             desc = data.getBookDescription();
+            URL = data.getBookURL();
             rating = data.getBookRating();
        }
          TextView bookName = view.findViewById(R.id.detailBookName);
@@ -92,7 +98,25 @@ public class DetailedBook extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.locker);
             }
         });
+        storeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(URL.isEmpty()){
+                    Toast.makeText(getActivity(), "This book does not have a valid Buy Link",
+                            Toast.LENGTH_SHORT).show();
 
+                }else{
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                    if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
+
+
+
+
+            }
+        });
         return view;
     }
 

@@ -58,9 +58,12 @@ public class Home extends Fragment {
     private RecyclerView recycle4;
 
 
-    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers", "Fiction", "Drama", "Juvenile", "Computer Programs"));
+    public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers",
+            "Fantasy", "Mystery", "Science Fiction", "Thriller", "Romance",  "Mathematics", "Fiction", "Drama", "Juvenile"));
     public static ArrayList<String> queuedCategories = new ArrayList<>();
     public static Random randomCategory = new Random();
+    public static boolean runOnlyOnce = true;
+
     public Home() {
         // Required empty public constructor
     }
@@ -102,43 +105,46 @@ public class Home extends Fragment {
             requestQueue = Volley.newRequestQueue(getContext());
         }
 
-        //If there is a way to pull all categories do that instead
-
-
+        RefreshCategories();
 
          //URLS FOR EACH RECYCLER VIEW
         //EACH WILL RETURN A DIFFERENT SUBJECT
         Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categories.get(randomCategory.nextInt(categories.size())));
 
 
-            adapterPopulater(recycle,cat1);
-            adapterPopulater(recycle2,cat2);
-            adapterPopulater(recycle3,cat3);
-            adapterPopulater(recycle4,cat4);
-            queuedCategories.clear();
+            AdapterPopulate(recycle,cat1,1);
+            AdapterPopulate(recycle2,cat2,2);
+            AdapterPopulate(recycle3,cat3,3);
+            AdapterPopulate(recycle4,cat4,4);
+
 
 
         return view;
     }
+    public void RefreshCategories(){
+        for(int i = 0; runOnlyOnce; i++) {
+            String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
+            while (queuedCategories.contains(categorySearch)) {
+                categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
+            }
+            if (!queuedCategories.contains(categorySearch)) {
+                queuedCategories.add(categorySearch);
 
-    public void adapterPopulater(final RecyclerView recycle, TextView category) {
-       String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
-       while (queuedCategories.contains(categorySearch)){
-           categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
-       }
-       if (!queuedCategories.contains(categorySearch))  {
-           queuedCategories.add(categorySearch);
-           category.setText(categorySearch.replace("%20", " "));
-       }
+            }
+            if (i >= 4){
+                runOnlyOnce = false;
+            }
+        }
 
+    }
 
+    public void AdapterPopulate(final RecyclerView recycle, TextView category, int categoryNumber) {
+        category.setText(queuedCategories.get(categoryNumber).replace("%20", " "));
 
-       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + categorySearch + "&maxResults=40");
+       Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + queuedCategories.get(categoryNumber) + "&maxResults=40");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
-                //data being retrieved from json
                 String bookAuthor = "N/A";
                 String bookCat = "N/A";
                 String bookName = "N/A";
@@ -147,9 +153,11 @@ public class Home extends Fragment {
                 String bookImage = "N/A";
                 String bookDescription = "N/A";
                 String cleanImageUrl = "N/A";
+                String purchaseURL = "";
                 int avgRating = 0;
                 try {
                     JSONArray jsonArray = response.getJSONArray("items");
+                    //data being retrieved from json
 
                     ArrayList<BookData> books = new ArrayList<>();
 
@@ -175,6 +183,15 @@ public class Home extends Fragment {
                             pubDate = resultInfo.getString("publishedDate");
                             bookDescription = resultInfo.getString("description");
                             avgRating = resultInfo.getInt("averageRating");
+                            purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
+
+
+
+
+
+
+
+
                         } catch (JSONException e) {
 
                             e.printStackTrace();
@@ -183,7 +200,7 @@ public class Home extends Fragment {
                         bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
                         cleanImageUrl = bookImage.replace("http", "https");
 
-                        books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating));
+                        books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL));
                         BookAdapter adapt = new BookAdapter(books, getContext());
                         recycle.setAdapter(adapt);
 
