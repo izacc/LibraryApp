@@ -128,16 +128,19 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
         android:elevation="2dp"
         android:isIndicator="true"
         android:numStars="5"
         android:rating="3.4"
         android:scaleX=".5"
         android:scaleY=".5"
-        app:layout_constraintStart_toEndOf="@+id/detailBookImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/detailBookImage"
         app:layout_constraintTop_toBottomOf="@+id/detailBookCat" />
 
     <TextView
