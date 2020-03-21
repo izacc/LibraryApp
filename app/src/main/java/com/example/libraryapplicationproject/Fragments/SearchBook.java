@@ -88,17 +88,19 @@ public class SearchBook extends Fragment {
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, uriSearch.toString(), null, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
+
                                     try {
                                         JSONArray jsonArray = response.getJSONArray("items");
                                         //data being retrieved from json
-                                        String bookAuthor = "";
-                                        String bookCat = "";
-                                        String bookName = "";
-                                        String bookPub = "";
-                                        String pubDate = "";
-                                        String bookImage = "";
-                                        String bookDescription = "";
-                                        String cleanImageUrl = "";
+                                        String bookAuthor = "N/A";
+                                        String bookCat = "N/A";
+                                        String bookName = "N/A";
+                                        String bookPub = "N/A";
+                                        String pubDate = "N/A";
+                                        String bookImage = "N/A";
+                                        String bookDescription = "N/A";
+                                        String cleanImageUrl = "N/A";
+                                        String purchaseURL = "";
                                         int avgRating = 0;
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -124,13 +126,12 @@ public class SearchBook extends Fragment {
                                                 bookDescription = resultInfo.getString("description");
                                                 avgRating = resultInfo.getInt("averageRating");
                                                 cleanImageUrl = bookImage.replace("http", "https");
+                                                purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-                                            System.out.println(bookImage);
-                                            System.out.println(bookDescription);
-                                            System.out.println(avgRating);
-                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating));
+
+                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating, purchaseURL));
                                             adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }
