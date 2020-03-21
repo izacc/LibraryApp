@@ -124,6 +124,7 @@ public class SearchBook extends Fragment {
                                                 avgRating = resultInfo.getInt("averageRating");
                                                 purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
                                             } catch (JSONException e) {
+                                                purchaseURL = "";
                                                 e.printStackTrace();
                                             }
 
@@ -135,6 +136,7 @@ public class SearchBook extends Fragment {
                                             recycle.setAdapter(adapt);
                                         }
                                     } catch (JSONException e) {
+
                                         e.printStackTrace();
                                     }
                                 }
