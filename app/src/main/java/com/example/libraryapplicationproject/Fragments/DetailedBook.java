@@ -65,7 +65,7 @@ public class DetailedBook extends Fragment {
             publisher = data.getBookPublisher();
              date = data.getPublishedDate();
             category = data.getBookCat();
-            img = data.getImageBook();
+            img = data.getBookImage();
             desc = data.getBookDescription();
             URL = data.getBookURL();
             rating = data.getBookRating();
