@@ -139,7 +139,7 @@ public class Home extends Fragment {
     }
 
     public void AdapterPopulate(final RecyclerView recycle, TextView category, int categoryNumber) {
-        category.setText(queuedCategories.get(categoryNumber).replace("", "%20"));
+        category.setText(queuedCategories.get(categoryNumber).replace("%20", " "));
 
        Uri url = Uri.parse("https://www.googleapis.com/books/v1/volumes?q=subject:" + queuedCategories.get(categoryNumber) + "&maxResults=40");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {

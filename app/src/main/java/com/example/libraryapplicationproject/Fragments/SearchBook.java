@@ -76,6 +76,7 @@ public class SearchBook extends Fragment {
                String userSearch = search.getQuery().toString();
                //replace every space the user enters with plus so url can be read properly
                String quickfix = userSearch.replace(" ", "+");
+
                if(userSearch.equals("")){
                    //no books
                    Toast.makeText(getContext(),"Enter a book",Toast.LENGTH_SHORT).show();
