@@ -4,11 +4,13 @@ package com.example.libraryapplicationproject.Fragments;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -76,13 +78,12 @@ public class SearchBook extends Fragment {
                String userSearch = search.getQuery().toString();
                //replace every space the user enters with plus so url can be read properly
                String quickfix = userSearch.replace(" ", "+");
-
                if(userSearch.equals("")){
                    //no books
                    Toast.makeText(getContext(),"Enter a book",Toast.LENGTH_SHORT).show();
                }else{
                    //base url with the users entry
-                   Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix);
+                   Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix+"&filter=ebooks&maxResults=40");
 //                    Uri.Builder builder = uriSearch.buildUpon();
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, uriSearch.toString(), null, new Response.Listener<JSONObject>() {
                                 @Override

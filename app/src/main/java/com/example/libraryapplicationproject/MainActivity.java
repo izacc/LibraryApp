@@ -2,10 +2,13 @@ package com.example.libraryapplicationproject;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import com.example.libraryapplicationproject.Fragments.Home;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -36,8 +39,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings, menu);
+         getMenuInflater().inflate(R.menu.settings, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_settings3:
+
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     public boolean onSupportNavigateUp() {

@@ -23,6 +23,7 @@
                 android:id="@+id/category1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:text="TextView"
                 android:textSize="24sp" />
 
@@ -35,6 +36,7 @@
             <TextView
                 android:id="@+id/category2"
                 android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="24sp" />
@@ -48,6 +50,7 @@
             <TextView
                 android:id="@+id/category3"
                 android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="24sp" />
@@ -61,6 +64,7 @@
             <TextView
                 android:id="@+id/category4"
                 android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="24sp" />
