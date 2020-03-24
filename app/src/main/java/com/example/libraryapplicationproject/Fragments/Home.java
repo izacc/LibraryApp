@@ -59,7 +59,6 @@ public class Home extends Fragment {
     private RecyclerView recycle3;
     private RecyclerView recycle4;
 
-
     public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers",
             "Fantasy", "Mystery", "Science Fiction", "Thriller", "Romance",  "Mathematics", "Fiction", "Drama", "Juvenile"));
     public static ArrayList<String> queuedCategories = new ArrayList<>();
@@ -123,6 +122,8 @@ public class Home extends Fragment {
 
         return view;
     }
+
+
     public static void RefreshCategories(){
         for(int i = 0; runOnlyOnce; i++) {
             String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
