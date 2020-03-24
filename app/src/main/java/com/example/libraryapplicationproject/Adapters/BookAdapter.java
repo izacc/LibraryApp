@@ -53,10 +53,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
 
         BookData item = books.get(position);
         holder.name.setText(item.getBookName());
-        if (item.getImageBook().isEmpty()) {
+        if (item.getBookImage().isEmpty()) {
             holder.image.setImageResource(R.drawable.placeholder);
         } else{
-            Picasso.get().load(item.getImageBook()).fit().centerInside().into(holder.image);
+            Picasso.get().load(item.getBookImage()).fit().centerInside().into(holder.image);
         }
 
 

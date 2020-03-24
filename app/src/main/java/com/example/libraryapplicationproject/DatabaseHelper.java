@@ -106,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_AUTHOR, book.getBookAuthor());
         values.put(COLUMN_DESCRIPTION, book.getBookDescription());
         values.put(COLUMN_RATING, book.getBookRating());
-        values.put(COLUMN_IMAGE, book.getImageBook());
+        values.put(COLUMN_IMAGE, book.getBookImage());
         db.insert(TABLE_BOOK, null, values);
         db.close();
     }

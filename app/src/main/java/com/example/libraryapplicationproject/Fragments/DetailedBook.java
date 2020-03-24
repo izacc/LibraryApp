@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class DetailedBook extends Fragment {
             publisher = data.getBookPublisher();
              date = data.getPublishedDate();
             category = data.getBookCat();
-            img = data.getImageBook();
+            img = data.getBookImage();
             desc = data.getBookDescription();
             URL = data.getBookURL();
             rating = data.getBookRating();
@@ -78,6 +79,7 @@ public class DetailedBook extends Fragment {
          ImageView bookImage = view.findViewById(R.id.detailBookImage);
          RatingBar bookRating = view.findViewById(R.id.ratingBar);
          TextView bookDesc = view.findViewById(R.id.detailBookDesc);
+         bookDesc.setMovementMethod(new ScrollingMovementMethod());
          bookName.setText(name);
          bookAuthor.setText(author);
          bookPub.setText(publisher);

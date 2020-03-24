@@ -4,6 +4,7 @@ package com.example.libraryapplicationproject.Fragments;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -56,7 +58,6 @@ public class Home extends Fragment {
     private RecyclerView recycle2;
     private RecyclerView recycle3;
     private RecyclerView recycle4;
-
 
     public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers",
             "Fantasy", "Mystery", "Science Fiction", "Thriller", "Romance",  "Mathematics", "Fiction", "Drama", "Juvenile"));
@@ -121,7 +122,9 @@ public class Home extends Fragment {
 
         return view;
     }
-    public void RefreshCategories(){
+
+
+    public static void RefreshCategories(){
         for(int i = 0; runOnlyOnce; i++) {
             String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
             while (queuedCategories.contains(categorySearch)) {
@@ -137,6 +140,7 @@ public class Home extends Fragment {
         }
 
     }
+
 
     public void AdapterPopulate(final RecyclerView recycle, TextView category, int categoryNumber) {
         category.setText(queuedCategories.get(categoryNumber).replace("%20", " "));
@@ -184,11 +188,6 @@ public class Home extends Fragment {
                             bookDescription = resultInfo.getString("description");
                             avgRating = resultInfo.getInt("averageRating");
                             purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
-                            
-
-
-
-
 
 
 
@@ -222,4 +221,5 @@ public class Home extends Fragment {
 
         requestQueue.add(jsonObjectRequest);
     }
+
 }
