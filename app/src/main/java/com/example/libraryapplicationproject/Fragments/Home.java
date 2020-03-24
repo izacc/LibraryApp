@@ -60,7 +60,7 @@ public class Home extends Fragment {
     private RecyclerView recycle4;
 
     public static  ArrayList<String> categories = new ArrayList<>(Arrays.asList("Psychology", "History", "Philosophy", "Architecture", "Computers",
-            "Fantasy", "Mystery", "Science Fiction", "Thriller", "Romance",  "Mathematics", "Fiction", "Drama", "Juvenile"));
+             "Mystery", "Science Fiction", "Thriller", "Romance",  "Mathematics", "Fiction", "Drama", "Juvenile"));
     public static ArrayList<String> queuedCategories = new ArrayList<>();
     public static Random randomCategory = new Random();
     public static boolean runOnlyOnce = true;
@@ -149,15 +149,15 @@ public class Home extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String bookAuthor = "N/A";
-                String bookCat = "N/A";
-                String bookName = "N/A";
-                String bookPub = "N/A";
-                String pubDate = "N/A";
-                String bookImage = "N/A";
-                String bookDescription = "N/A";
-                String cleanImageUrl = "N/A";
-                String purchaseURL = "";
+                String bookAuthor;
+                String bookCat;
+                String bookName;
+                String bookPub;
+                String pubDate;
+                String bookImage;
+                String bookDescription;
+                String cleanImageUrl;
+                String purchaseURL;
                 int avgRating = 0;
                 try {
                     JSONArray jsonArray = response.getJSONArray("items");
@@ -171,6 +171,12 @@ public class Home extends Fragment {
 
                         try {
                             bookName = resultInfo.getString("title");
+                        } catch (JSONException e) {
+                            bookName = "N/A";
+                            e.printStackTrace();
+                        }
+
+                        try{
                             //json provided for author is array
                             JSONArray authors = resultInfo.getJSONArray("authors");
 
@@ -182,22 +188,53 @@ public class Home extends Fragment {
                             else {
                                 bookAuthor = authors.getString(0) + ", " + authors.getString(1);
                             }
+                        } catch (JSONException e) {
+                            bookAuthor = "N/A";
+                            e.printStackTrace();
+                        }
+                        try{
                             bookCat = resultInfo.getJSONArray("categories").getString(0);
+                        } catch (JSONException e) {
+                            bookCat = "N/A";
+                            e.printStackTrace();
+                        }
+                        try{
                             bookPub = resultInfo.getString("publisher");
+                        } catch (JSONException e) {
+                            bookPub = "N/A";
+                            e.printStackTrace();
+                        }
+                        try{
                             pubDate = resultInfo.getString("publishedDate");
+                        } catch (JSONException e) {
+                            pubDate = "N/A";
+                            e.printStackTrace();
+                        }
+                        try{
                             bookDescription = resultInfo.getString("description");
+                        } catch (JSONException e) {
+                            bookDescription = "N/A";
+                            e.printStackTrace();
+                        }
+                        try{
                             avgRating = resultInfo.getInt("averageRating");
+                        } catch (JSONException e) {
+                            avgRating = 0;
+                            e.printStackTrace();
+                        }
+                        try{
                             purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
-
-
-
                         } catch (JSONException e) {
                             purchaseURL = "";
                             e.printStackTrace();
                         }
-                        //Moved out of try and it works now
-                        bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
-                        cleanImageUrl = bookImage.replace("http", "https");
+                        try{
+                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                            cleanImageUrl = bookImage.replace("http", "https");
+                        }catch (JSONException e){
+                            cleanImageUrl = "";
+                        }
+
 
                         books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL));
                         BookAdapter adapt = new BookAdapter(books, getContext());

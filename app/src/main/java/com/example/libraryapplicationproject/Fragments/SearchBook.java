@@ -92,52 +92,92 @@ public class SearchBook extends Fragment {
                                     try {
                                         JSONArray jsonArray = response.getJSONArray("items");
                                         //data being retrieved from json
-                                        String bookAuthor = "N/A";
-                                        String bookCat = "N/A";
-                                        String bookName = "N/A";
-                                        String bookPub = "N/A";
-                                        String pubDate = "N/A";
-                                        String bookImage = "N/A";
-                                        String bookDescription = "N/A";
-                                        String cleanImageUrl = "N/A";
-                                        String purchaseURL = "";
+                                        String bookAuthor;
+                                        String bookCat;
+                                        String bookName;
+                                        String bookPub;
+                                        String pubDate;
+                                        String bookImage;
+                                        String bookDescription;
+                                        String cleanImageUrl;
+                                        String purchaseURL;
                                         int avgRating = 0;
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                                             JSONObject resultInfo = jsonObject.getJSONObject("volumeInfo");
 
-                                   try {
-                                       bookName = resultInfo.getString("title");
-                                       //json provided for author is array
-                                       JSONArray authors = resultInfo.getJSONArray("authors");
+                                            try {
+                                                bookName = resultInfo.getString("title");
+                                            } catch (JSONException e) {
+                                                bookName = "N/A";
+                                                e.printStackTrace();
+                                            }
+
+                                            try {
+                                                //json provided for author is array
+                                                JSONArray authors = resultInfo.getJSONArray("authors");
 
                                                 //if author is only one give me only one
-                                                if(authors.length() == 1){
+                                                if (authors.length() == 1) {
                                                     bookAuthor = authors.getString(0);
                                                 }
                                                 //else give me all authors with "," in between
-                                                else{
-                                                    bookAuthor = authors.getString(0) + ", " +authors.getString(1);
+                                                else {
+                                                    bookAuthor = authors.getString(0) + ", " + authors.getString(1);
                                                 }
+                                            } catch (JSONException e) {
+                                                bookAuthor = "N/A";
+                                                e.printStackTrace();
+                                            }
+                                            try {
                                                 bookCat = resultInfo.getJSONArray("categories").getString(0);
+                                            } catch (JSONException e) {
+                                                bookCat = "N/A";
+                                                e.printStackTrace();
+                                            }
+                                            try {
                                                 bookPub = resultInfo.getString("publisher");
+                                            } catch (JSONException e) {
+                                                bookPub = "N/A";
+                                                e.printStackTrace();
+                                            }
+                                            try {
                                                 pubDate = resultInfo.getString("publishedDate");
+                                            } catch (JSONException e) {
+                                                pubDate = "N/A";
+                                                e.printStackTrace();
+                                            }
+                                            try {
                                                 bookDescription = resultInfo.getString("description");
+                                            } catch (JSONException e) {
+                                                bookDescription = "N/A";
+                                                e.printStackTrace();
+                                            }
+                                            try {
                                                 avgRating = resultInfo.getInt("averageRating");
+                                            } catch (JSONException e) {
+                                                avgRating = 0;
+                                                e.printStackTrace();
+                                            }
+                                            try {
                                                 purchaseURL = jsonObject.getJSONObject("saleInfo").getString("buyLink");
                                             } catch (JSONException e) {
                                                 purchaseURL = "";
                                                 e.printStackTrace();
                                             }
+                                            try {
+                                                bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
+                                                cleanImageUrl = bookImage.replace("http", "https");
+                                            } catch (JSONException e) {
+                                                cleanImageUrl = "";
+                                            }
 
-                                            bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
-                                            cleanImageUrl = bookImage.replace("http", "https");
 
-                                            books.add(new BookData(bookName, bookAuthor, bookCat,bookPub,pubDate,cleanImageUrl,bookDescription,avgRating, purchaseURL));
-                                            adapt = new SearchAdapter(books, getContext());
+                                            books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL));
+                                            SearchAdapter adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }
-                                    } catch (JSONException e) {
+                                        } catch (JSONException e) {
 
                                         e.printStackTrace();
                                     }

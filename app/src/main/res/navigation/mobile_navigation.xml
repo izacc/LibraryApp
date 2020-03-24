@@ -15,11 +15,6 @@
             app:destination="@id/detailedBook" />
     </fragment>
     <fragment
-        android:id="@+id/favorites"
-        android:name="com.example.libraryapplicationproject.Fragments.Favorites"
-        android:label="Favorites"
-        tools:layout="@layout/fragment_favorites" />
-    <fragment
         android:id="@+id/locker"
         android:name="com.example.libraryapplicationproject.Fragments.Locker"
         android:label="My Locker"
