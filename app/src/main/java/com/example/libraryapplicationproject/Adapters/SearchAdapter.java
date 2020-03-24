@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
@@ -55,10 +54,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CustomSear
         holder.bookCat.setText(item.getBookCat());
 
         //if path is empty give me the placeholder Image instead else place it with its given image from url
-        if (item.getImageBook().isEmpty()) {
+        if (item.getBookImage().isEmpty()) {
             holder.bookImage.setImageResource(R.drawable.placeholder);
         } else{
-            Picasso.get().load(item.getImageBook()).into(holder.bookImage);
+            Picasso.get().load(item.getBookImage()).into(holder.bookImage);
         }
     }
     /**

@@ -11,42 +11,42 @@ public class BookData implements Parcelable {
     public String bookURL;
     public int bookRating;
     public int bookID;
-    public int bookImage;
-    public String imageBook;
+    public String bookImage;
     public String bookCat;
     public String bookPublisher;
     public String publishedDate;
 
 
 //keep this importnt for search gives me everything i need so far
-    public BookData(String bookName, String bookAuthor, String bookCat,String bookPublisher,String publishedDate, String imageBook, String bookDescription, int bookRating){
+    public BookData(String bookName, String bookAuthor, String bookCat, String bookPublisher, String publishedDate, String bookImage, String bookDescription, int bookRating, String bookURL){
         this.bookAuthor = bookAuthor;
         this.bookName = bookName;
         this.bookCat = bookCat;
         this.bookPublisher = bookPublisher;
         this.publishedDate = publishedDate;
-        this.imageBook = imageBook;
+        this.bookImage = bookImage;
         this.bookDescription = bookDescription;
         this.bookRating = bookRating;
+        this.bookURL = bookURL;
     }
 
-    public BookData(String bookName, String bookAuthor, String bookDescription, int bookRating, String imageBook, String bookURL) {
+    public BookData(String bookName, String bookAuthor, String bookDescription, int bookRating, String bookImage, String bookURL) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
         this.bookRating = bookRating;
-        this.imageBook = imageBook;
+        this.bookImage = bookImage;
         this.bookURL = bookURL;
     }
 
-    public BookData( int bookID, String bookName, String bookAuthor, String bookDescription, int bookRating, String imageBook, String bookURL) {
+    public BookData(int bookID, String bookName, String bookAuthor, String bookDescription, int bookRating, String bookImage, String bookURL) {
         this.bookName = bookName;
         this.bookID = bookID;
         this.bookAuthor = bookAuthor;
         this.bookDescription = bookDescription;
         this.bookRating = bookRating;
         this.bookURL = bookURL;
-        this.imageBook = imageBook;
+        this.bookImage = bookImage;
     }
 
     public int getBookRating() {return bookRating;}
@@ -75,12 +75,6 @@ public class BookData implements Parcelable {
     public void setBookAuthor(String bookAuthor) {
         this.bookAuthor = bookAuthor;
     }
-    public int getBookImage() {
-        return bookImage;
-    }
-    public void setBookImage(int bookImage) {
-        this.bookImage = bookImage;
-    }
     public String getBookPublisher() {
         return bookPublisher;
     }
@@ -93,11 +87,11 @@ public class BookData implements Parcelable {
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
     }
-    public String getImageBook() {
-        return imageBook;
+    public String getBookImage() {
+        return bookImage;
     }
-    public void setImageBook(String imageBook) {
-        this.imageBook = imageBook;
+    public void setBookImage(String bookImage) {
+        this.bookImage = bookImage;
     }
 
 
@@ -108,8 +102,7 @@ public class BookData implements Parcelable {
         bookURL = in.readString();
         bookRating = in.readInt();
         bookID = in.readInt();
-        bookImage = in.readInt();
-        imageBook = in.readString();
+        bookImage = in.readString();
         bookCat = in.readString();
         bookPublisher = in.readString();
         publishedDate = in.readString();
@@ -140,8 +133,7 @@ public class BookData implements Parcelable {
         parcel.writeString(bookURL);
         parcel.writeInt(bookRating);
         parcel.writeInt(bookID);
-        parcel.writeInt(bookImage);
-        parcel.writeString(imageBook);
+        parcel.writeString(bookImage);
         parcel.writeString(bookCat);
         parcel.writeString(bookPublisher);
         parcel.writeString(publishedDate);

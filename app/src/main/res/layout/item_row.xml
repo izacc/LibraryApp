@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -14,7 +15,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@color/cardview_dark_background"
+        app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="@dimen/cardViewCornerRadius"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true"
@@ -45,8 +46,8 @@
 
     <ImageView
         android:id="@+id/bookImage"
-        android:layout_width="340dp"
-        android:layout_height="340dp"
+        android:layout_width="418dp"
+        android:layout_height="475dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="32dp"
         android:elevation="@dimen/elevation"

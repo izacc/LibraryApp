@@ -5,7 +5,7 @@
     <dimen name="topOfRecycler">20dp</dimen>
     <dimen name="elevation">2dp</dimen>
     <dimen name="TitleItemSize">20sp</dimen>
-    <dimen name="cardViewCornerRadius">15dp</dimen>
+    <dimen name="cardViewCornerRadius">10dp</dimen>
     <dimen name="bookName">18sp</dimen>
     <dimen name="infoBook">18sp</dimen>
     <dimen name="bottomNavHeight">50dp</dimen>

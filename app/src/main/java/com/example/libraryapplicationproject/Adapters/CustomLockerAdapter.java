@@ -49,9 +49,9 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
         holder.description.setText(book.getBookDescription());
         //not properly grabbing the image url
         //placeholder for image
-         if (book.imageBook.isEmpty()) { holder.bookImage.setImageResource(R.drawable.placeholder);}
+         if (book.bookImage.isEmpty()) { holder.bookImage.setImageResource(R.drawable.placeholder);}
                 else {
-             Picasso.get().load(book.imageBook).into(holder.bookImage);
+             Picasso.get().load(book.bookImage).into(holder.bookImage);
          }
         holder.RatingSystemReader(book.getBookRating());
     }
