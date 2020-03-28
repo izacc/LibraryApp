@@ -44,14 +44,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Add To Locker"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/detailBookDesc" />
+        app:layout_constraintStart_toStartOf="@+id/cardView" />
 
     <TextView
         android:id="@+id/detailBookName"
@@ -61,7 +59,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:elevation="@dimen/elevation"
-        android:maxLines="1"
+        android:maxLines="3"
         android:text="TextView"
         android:textColor="@color/primaryTextColor"
         android:textSize="18sp"
@@ -131,12 +129,14 @@
         android:id="@+id/bookUrl"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:elevation="@dimen/elevation"
         android:src="@drawable/ic_shopping_cart_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/favouritesButton"
-        app:layout_constraintEnd_toEndOf="@+id/cardView" />
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/detailBookDesc" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -165,12 +165,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:elevation="@dimen/elevation"
         android:maxLines="7"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         android:textAlignment="textStart"
         android:textColor="@color/primaryTextColor"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/favouritesButton"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
