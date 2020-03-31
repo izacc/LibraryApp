@@ -29,6 +29,7 @@ import com.example.libraryapplicationproject.Adapters.BookAdapter;
 import com.example.libraryapplicationproject.Adapters.SearchAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +54,10 @@ public class Home extends Fragment {
     //request.
     private RequestQueue requestQueue;
     //recycler adapter
-
+    private ShimmerFrameLayout shimmer;
+    private ShimmerFrameLayout shimmer2;
+    private ShimmerFrameLayout shimmer3;
+    private ShimmerFrameLayout shimmer4;
     private RecyclerView recycle;
     private RecyclerView recycle2;
     private RecyclerView recycle3;
@@ -65,6 +69,7 @@ public class Home extends Fragment {
     public static Random randomCategory = new Random();
     public static boolean runOnlyOnce = true;
 
+
     public Home() {
         // Required empty public constructor
     }
@@ -75,8 +80,12 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view =inflater.inflate(R.layout.fragment_home, container, false);
-         //array list to hold hour results
 
+        shimmer = view.findViewById(R.id.shimmerFrameLayoutHome);
+        shimmer2 = view.findViewById(R.id.shimmerFrameLayoutHome2);
+        shimmer3 = view.findViewById(R.id.shimmerFrameLayoutHome3);
+        shimmer4 = view.findViewById(R.id.shimmerFrameLayoutHome4);
+        //array list to hold hour results
         recycle = view.findViewById(R.id.recyclerFirstRow);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.HORIZONTAL);
@@ -149,6 +158,15 @@ public class Home extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url.toString(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
+                shimmer.stopShimmer();
+                shimmer.setVisibility(View.GONE);
+                shimmer2.stopShimmer();
+                shimmer2.setVisibility(View.GONE);
+                shimmer3.stopShimmer();
+                shimmer3.setVisibility(View.GONE);
+                shimmer4.stopShimmer();
+                shimmer4.setVisibility(View.GONE);
                 String bookAuthor;
                 String bookCat;
                 String bookName;
