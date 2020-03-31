@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,14 +89,21 @@ public class SearchBook extends Fragment {
                    //no books
                    Toast.makeText(getContext(),"Enter a book",Toast.LENGTH_SHORT).show();
                }else{
+                   Handler handler = new Handler();
+                   handler.postDelayed(new Runnable() {
+                       @Override
+                       public void run() {
+                           shimmer.stopShimmer();
+                           shimmer.setVisibility(View.GONE);
+                       }
+                   },1500);
                    //base url with the users entry
                    Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix+"&filter=ebooks&maxResults=40");
 //                    Uri.Builder builder = uriSearch.buildUpon();
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, uriSearch.toString(), null, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    shimmer.stopShimmer();
-                                    shimmer.setVisibility(View.GONE);
+
                                     try {
                                         JSONArray jsonArray = response.getJSONArray("items");
                                         //data being retrieved from json
