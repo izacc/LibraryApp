@@ -33,6 +33,6 @@
         android:id="@+id/searchResults"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutAnimation="@anim/search_results"/>
+        android:layoutAnimation="@anim/locker"/>
 
 </LinearLayout>
