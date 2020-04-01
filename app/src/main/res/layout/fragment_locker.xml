@@ -9,6 +9,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lockerRecyclerView"
         android:layout_width="match_parent"
-
+        android:layoutAnimation="@anim/locker"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -7,8 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">#FFFFFF</item>
-        <item name="colorControlActivated">#FFD700</item>
-    </style>
+<style name="splash" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="windowActionBar">false</item>
+</style>
 </resources>
