@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.example.libraryapplicationproject.Adapters.BookAdapter;
 import com.example.libraryapplicationproject.Adapters.SearchAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +44,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class SearchBook extends Fragment {
-
+    private ShimmerFrameLayout shimmer;
     //searchBar
     private SearchView search;
     //request.
@@ -59,10 +61,13 @@ public class SearchBook extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view = inflater.inflate(R.layout.fragment_search_book, container, false);
+         final View view = inflater.inflate(R.layout.fragment_search_book, container, false);
          search = view.findViewById(R.id.searchBar);
          final ArrayList<BookData> books = new ArrayList<>();
          recycle = view.findViewById(R.id.searchResults);
+         shimmer = view.findViewById(R.id.shimmerFrameLayout);
+        shimmer.stopShimmer();
+        shimmer.setVisibility(View.GONE);
          LinearLayoutManager manager = new LinearLayoutManager(getContext());
          recycle.setLayoutManager(manager);
 
@@ -75,6 +80,8 @@ public class SearchBook extends Fragment {
            public boolean onQueryTextSubmit(String s) {
                //clear the list every time a search is made
                books.clear();
+               shimmer.startShimmer();
+               shimmer.setVisibility(View.VISIBLE);
                String userSearch = search.getQuery().toString();
                //replace every space the user enters with plus so url can be read properly
                String quickfix = userSearch.replace(" ", "+");
@@ -82,6 +89,14 @@ public class SearchBook extends Fragment {
                    //no books
                    Toast.makeText(getContext(),"Enter a book",Toast.LENGTH_SHORT).show();
                }else{
+                   Handler handler = new Handler();
+                   handler.postDelayed(new Runnable() {
+                       @Override
+                       public void run() {
+                           shimmer.stopShimmer();
+                           shimmer.setVisibility(View.GONE);
+                       }
+                   },2000);
                    //base url with the users entry
                    Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix+"&filter=ebooks&maxResults=40");
 //                    Uri.Builder builder = uriSearch.buildUpon();
@@ -197,7 +212,7 @@ public class SearchBook extends Fragment {
                return false;
            }
        });
+
          return view;
     }
-
 }

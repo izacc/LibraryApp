@@ -3,10 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="topOfRecycler">20dp</dimen>
-    <dimen name="elevation">2dp</dimen>
+    <dimen name="elevation">6dp</dimen>
     <dimen name="TitleItemSize">20sp</dimen>
-    <dimen name="cardViewCornerRadius">10dp</dimen>
+    <dimen name="cardViewCornerRadius">6dp</dimen>
     <dimen name="bookName">18sp</dimen>
     <dimen name="infoBook">18sp</dimen>
     <dimen name="bottomNavHeight">50dp</dimen>
+    <dimen name="cardElev">5dp</dimen>
+    <dimen name="textPaddingForHomePageCat">5dp</dimen>
 </resources>
