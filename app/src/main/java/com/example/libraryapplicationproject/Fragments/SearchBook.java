@@ -65,6 +65,7 @@ public class SearchBook extends Fragment {
          search = view.findViewById(R.id.searchBar);
          final ArrayList<BookData> books = new ArrayList<>();
          recycle = view.findViewById(R.id.searchResults);
+         recycle.setVisibility(View.GONE);
          shimmer = view.findViewById(R.id.shimmerFrameLayout);
         shimmer.stopShimmer();
         shimmer.setVisibility(View.GONE);
@@ -95,6 +96,8 @@ public class SearchBook extends Fragment {
                        public void run() {
                            shimmer.stopShimmer();
                            shimmer.setVisibility(View.GONE);
+                           recycle.setVisibility(View.VISIBLE);
+
                        }
                    },1500);
                    //base url with the users entry
