@@ -96,7 +96,7 @@ public class SearchBook extends Fragment {
                            shimmer.stopShimmer();
                            shimmer.setVisibility(View.GONE);
                        }
-                   },1500);
+                   },2000);
                    //base url with the users entry
                    Uri uriSearch = Uri.parse("https://www.googleapis.com/books/v1/volumes?q="+quickfix+"&filter=ebooks&maxResults=40");
 //                    Uri.Builder builder = uriSearch.buildUpon();
