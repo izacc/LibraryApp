@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,6 +35,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -70,7 +72,7 @@ public class SearchBook extends Fragment {
         shimmer.setVisibility(View.GONE);
          LinearLayoutManager manager = new LinearLayoutManager(getContext());
          recycle.setLayoutManager(manager);
-
+        final TextView temp = view.findViewById(R.id.temptext);
 
         if(requestQueue == null){
             requestQueue = Volley.newRequestQueue(getContext());
@@ -79,6 +81,7 @@ public class SearchBook extends Fragment {
            @Override
            public boolean onQueryTextSubmit(String s) {
                //clear the list every time a search is made
+               temp.setVisibility(View.GONE);
                books.clear();
                shimmer.startShimmer();
                shimmer.setVisibility(View.VISIBLE);

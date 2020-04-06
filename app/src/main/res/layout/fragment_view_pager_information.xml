@@ -21,6 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
+        android:layout_margin="@dimen/vpitemMargin"
+        android:textAlignment="center"
         android:paddingTop="@dimen/paddingtopVp"
         android:layout_height="wrap_content"
         android:text="TextView" />
@@ -29,6 +31,9 @@
         android:id="@+id/descriptionTutorial"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_margin="@dimen/vpitemMargin"
         android:paddingTop="@dimen/paddingtopVp"
         android:layout_height="wrap_content"
         android:text="TextView" />
