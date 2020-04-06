@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".tutorial"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
+            android:theme="@style/status">
 
         </activity>
         <activity

@@ -12,8 +12,9 @@
     <item name="windowActionBar">false</item>
 </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
+
+    <style name="status" parent="Theme.Design.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 </resources>
