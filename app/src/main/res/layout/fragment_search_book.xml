@@ -9,7 +9,15 @@
     <SearchView
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+    </SearchView>
+    <TextView
+        android:id="@+id/temptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/paddingtopVp"
+        android:text="search for a book" />
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerFrameLayout"
         android:layout_width="match_parent"

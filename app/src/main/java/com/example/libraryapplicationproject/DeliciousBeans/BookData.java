@@ -15,10 +15,11 @@ public class BookData implements Parcelable {
     public String bookCat;
     public String bookPublisher;
     public String publishedDate;
+    public String preview;
 
 
 //keep this importnt for search gives me everything i need so far
-    public BookData(String bookName, String bookAuthor, String bookCat, String bookPublisher, String publishedDate, String bookImage, String bookDescription, int bookRating, String bookURL){
+    public BookData(String bookName, String bookAuthor, String bookCat, String bookPublisher, String publishedDate, String bookImage, String bookDescription, int bookRating, String bookURL,String preview){
         this.bookAuthor = bookAuthor;
         this.bookName = bookName;
         this.bookCat = bookCat;
@@ -28,6 +29,7 @@ public class BookData implements Parcelable {
         this.bookDescription = bookDescription;
         this.bookRating = bookRating;
         this.bookURL = bookURL;
+        this.preview = preview;
     }
 
     public BookData(String bookName, String bookAuthor, String bookDescription, int bookRating, String bookImage, String bookURL) {
@@ -49,6 +51,12 @@ public class BookData implements Parcelable {
         this.bookImage = bookImage;
     }
 
+    public String getPreview() {
+        return preview;
+    }
+    public void setPreview(String preview) {
+        this.preview = preview;
+    }
     public int getBookRating() {return bookRating;}
     public void setBookRating(int bookRating) {this.bookRating = bookRating;}
     public int getBookID() {return bookID;}
@@ -106,6 +114,7 @@ public class BookData implements Parcelable {
         bookCat = in.readString();
         bookPublisher = in.readString();
         publishedDate = in.readString();
+        preview = in.readString();
     }
 
     public static final Creator<BookData> CREATOR = new Creator<BookData>() {
@@ -137,5 +146,6 @@ public class BookData implements Parcelable {
         parcel.writeString(bookCat);
         parcel.writeString(bookPublisher);
         parcel.writeString(publishedDate);
+        parcel.writeString(preview);
     }
 }

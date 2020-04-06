@@ -9,6 +9,13 @@
     </style>
 <style name="splash" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="windowActionBar">false</item>
 </style>
+
+
+
+    <style name="status" parent="Theme.Design.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
 </resources>

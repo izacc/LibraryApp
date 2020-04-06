@@ -36,6 +36,7 @@ public class DetailedBook extends Fragment {
     public String img = "";
     public String desc = "";
     public String URL = "";
+    public String previewURL = "";
 
 
     public DetailedBook() {
@@ -50,6 +51,7 @@ public class DetailedBook extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
         ImageView storeButton = view.findViewById(R.id.bookUrl);
+        ImageView previewButton = view.findViewById(R.id.preview);
         name = "N/A";
         author = "N/A";
         publisher = "N/A";
@@ -58,6 +60,7 @@ public class DetailedBook extends Fragment {
         img = "N/A";
         desc = "N/A";
         URL = "";
+        previewURL = "";
         int rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
@@ -69,6 +72,7 @@ public class DetailedBook extends Fragment {
             img = data.getBookImage();
             desc = data.getBookDescription();
             URL = data.getBookURL();
+            previewURL = data.getPreview();
             rating = data.getBookRating();
        }
          TextView bookName = view.findViewById(R.id.detailBookName);
@@ -113,10 +117,22 @@ public class DetailedBook extends Fragment {
                         startActivity(intent);
                     }
                 }
+            }
+        });
 
+        previewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(previewURL.isEmpty()){
+                    Toast.makeText(getActivity(), "This book does not provide a preview",
+                            Toast.LENGTH_SHORT).show();
 
-
-
+                }else{
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(previewURL));
+                    if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
             }
         });
         return view;
