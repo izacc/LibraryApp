@@ -176,6 +176,7 @@ public class Home extends Fragment {
                 String bookDescription;
                 String cleanImageUrl;
                 String purchaseURL;
+                String previewUrl;
                 int avgRating = 0;
                 try {
                     JSONArray jsonArray = response.getJSONArray("items");
@@ -235,6 +236,12 @@ public class Home extends Fragment {
                             e.printStackTrace();
                         }
                         try{
+                            previewUrl = resultInfo.getString("previewLink");
+                        } catch (JSONException e) {
+                            previewUrl = "";
+                            e.printStackTrace();
+                        }
+                        try{
                             avgRating = resultInfo.getInt("averageRating");
                         } catch (JSONException e) {
                             avgRating = 0;
@@ -245,6 +252,8 @@ public class Home extends Fragment {
                         } catch (JSONException e) {
                             purchaseURL = "";
                             e.printStackTrace();
+
+
                         }
                         try{
                             bookImage = resultInfo.getJSONObject("imageLinks").getString("thumbnail");
@@ -254,7 +263,7 @@ public class Home extends Fragment {
                         }
 
 
-                        books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL));
+                        books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL,previewUrl));
                         BookAdapter adapt = new BookAdapter(books, getContext());
                         recycle.setAdapter(adapt);
 

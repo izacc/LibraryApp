@@ -179,7 +179,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/preview"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"

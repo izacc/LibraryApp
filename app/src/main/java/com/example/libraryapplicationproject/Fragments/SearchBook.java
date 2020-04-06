@@ -119,6 +119,7 @@ public class SearchBook extends Fragment {
                                         String bookDescription;
                                         String cleanImageUrl;
                                         String purchaseURL;
+                                        String previewURL;
                                         int avgRating = 0;
                                         for (int i = 0; i < jsonArray.length(); i++) {
                                             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -171,6 +172,13 @@ public class SearchBook extends Fragment {
                                                 bookDescription = "N/A";
                                                 e.printStackTrace();
                                             }
+
+                                            try {
+                                                previewURL = resultInfo.getString("previewLink");
+                                            } catch (JSONException e) {
+                                                previewURL = "";
+                                                e.printStackTrace();
+                                            }
                                             try {
                                                 avgRating = resultInfo.getInt("averageRating");
                                             } catch (JSONException e) {
@@ -191,7 +199,7 @@ public class SearchBook extends Fragment {
                                             }
 
 
-                                            books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL));
+                                            books.add(new BookData(bookName, bookAuthor, bookCat, bookPub, pubDate, cleanImageUrl, bookDescription, avgRating, purchaseURL,previewURL));
                                             SearchAdapter adapt = new SearchAdapter(books, getContext());
                                             recycle.setAdapter(adapt);
                                         }
