@@ -12,7 +12,6 @@ FragmentManager fm;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-
         fm= getSupportFragmentManager();
         FragmentTransaction transaction= fm.beginTransaction();
         transaction.replace(R.id.content,new tutorialViewPager());
