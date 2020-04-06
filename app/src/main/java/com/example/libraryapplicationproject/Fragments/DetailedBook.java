@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 
@@ -90,7 +91,14 @@ public class DetailedBook extends Fragment {
          pubDate.setText(date);
          bookCat.setText(category);
         if (img.isEmpty()) { bookImage.setImageResource(R.drawable.placeholder);}
-        else{ Picasso.get().load(img).into(bookImage);}
+        else{
+            if (SettingsActivity.pictureSetting) {
+                bookImage.setImageResource(R.drawable.placeholder);
+            }else{
+                Picasso.get().load(img).into(bookImage);
+            }
+
+            }
         bookRating.setRating(rating);
         bookDesc.setText(desc);
 
