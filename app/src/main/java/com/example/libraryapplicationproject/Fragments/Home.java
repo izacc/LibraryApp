@@ -29,6 +29,7 @@ import com.example.libraryapplicationproject.Adapters.BookAdapter;
 import com.example.libraryapplicationproject.Adapters.SearchAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.SettingsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,11 +103,27 @@ public class Home extends Fragment {
         TextView cat3 = view.findViewById(R.id.category3);
         TextView cat4 = view.findViewById(R.id.category4);
 
+
+
         if(requestQueue == null){
             requestQueue = Volley.newRequestQueue(getContext());
         }
+        if(SettingsActivity.refreshSetting){
+            queuedCategories.clear();
+            for(int i = 0; i<= 4; i++) {
+                String categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
+                while (queuedCategories.contains(categorySearch)) {
+                    categorySearch = categories.get(randomCategory.nextInt(categories.size())).replace(" ", "%20");
+                }
+                if (!queuedCategories.contains(categorySearch)) {
+                    queuedCategories.add(categorySearch);
 
-        RefreshCategories();
+                }
+            }
+        }else{
+            RefreshCategories();
+        }
+
 
          //URLS FOR EACH RECYCLER VIEW
         //EACH WILL RETURN A DIFFERENT SUBJECT

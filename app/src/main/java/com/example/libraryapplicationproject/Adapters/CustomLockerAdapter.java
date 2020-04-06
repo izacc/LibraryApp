@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 import com.example.libraryapplicationproject.DatabaseHelper;
@@ -51,7 +53,12 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
         //placeholder for image
          if (book.bookImage.isEmpty()) { holder.bookImage.setImageResource(R.drawable.placeholder);}
                 else {
-             Picasso.get().load(book.bookImage).into(holder.bookImage);
+                    if (SettingsActivity.pictureSetting){
+                        holder.bookImage.setImageResource(R.drawable.placeholder);
+                    }else{
+                        Picasso.get().load(book.bookImage).into(holder.bookImage);
+                    }
+
          }
         holder.RatingSystemReader(book.getBookRating());
     }

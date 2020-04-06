@@ -2,6 +2,7 @@ package com.example.libraryapplicationproject.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -56,7 +58,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder>{
         if (item.getBookImage().isEmpty()) {
             holder.image.setImageResource(R.drawable.placeholder);
         } else{
-            Picasso.get().load(item.getBookImage()).fit().centerInside().into(holder.image);
+            if (SettingsActivity.pictureSetting) {
+                holder.image.setImageResource(R.drawable.placeholder);
+            }else{
+
+                Picasso.get().load(item.getBookImage()).fit().centerInside().into(holder.image);
+            }
+
+
         }
 
 

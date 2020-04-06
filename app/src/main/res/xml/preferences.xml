@@ -7,11 +7,23 @@
         app:summary="Contact the developers to give feedback!"
         app:title="Send feedback">
 
-        <intent
-            android:targetPackage="com.example"
-            android:targetClass="com.example.Settings"/>
-
     </Preference>
+
+    <SwitchPreference
+    app:key="pictures"
+    app:title="Disable Book Covers"
+    app:defaultValue="false"
+    app:summaryOff="Off"
+    app:summaryOn="On">
+</SwitchPreference>
+
+    <SwitchPreference
+        app:key="refresh"
+        app:title="New Categories"
+        app:defaultValue="false"
+        app:summaryOff="Once Per Launch"
+        app:summaryOn="Always">
+    </SwitchPreference>
 
 
 </PreferenceScreen>
