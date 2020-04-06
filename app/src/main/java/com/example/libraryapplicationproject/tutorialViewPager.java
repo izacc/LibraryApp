@@ -60,19 +60,18 @@ public class tutorialViewPager extends Fragment {
         @Override
         public Fragment getItem(int position) {
             switch (position){
-                case 0: return viewPagerInformation.newInstance("sd","place holder text",R.drawable.placeholder);
-                case 1: return viewPagerInformation.newInstance("placeHolder","place holder text",R.drawable.placeholder);
-                case 2: return viewPagerInformation.newInstance("asdasd","place holder text",R.drawable.placeholder);
-                case 3: return viewPagerInformation.newInstance("asdasdas","place holder text",R.drawable.placeholder);
-                case 4: return viewPagerInformation.newInstance("placaeHolder","place holder text",R.drawable.placeholder);
-                case 5: return viewPagerInformation.newInstance("asdasdasd","place holder text",R.drawable.placeholder);
+                case 0: return viewPagerInformation.newInstance("Welcome","Welcome to Book Locker. This app lets you get a hold of books you've always wanted to read. you can find books by Category or by searching for a specific book",R.drawable.logo);
+                case 1: return viewPagerInformation.newInstance("Home","In the Home section of the app, you can Can find books by Category. each category has 40 books in them and it will refresh after every fresh launch of the app",R.drawable.img3);
+                case 2: return viewPagerInformation.newInstance("Look Up a Book","Within the search section, you can search specific books by tapping on the magnifying glass which brings up the keyboard. Than you will get a list of books related to that search via by title",R.drawable.img1);
+                case 3: return viewPagerInformation.newInstance("View Detail","Once you tap on a book, you will be taken to the detail section of the book. Here you can read the description of the book, see the average rating, read a preview or even buy it if you would like.",R.drawable.img2);
+                case 4: return viewPagerInformation.newInstance("The Locker","Within the locker section, you can see books you have added to your locker. Here, you can rate the book by taping the stars or delete it from your locker by tapping the X marker.",R.drawable.img4);
                 default: return viewPagerInformation.newInstance("you cant see me","place holder text",R.drawable.placeholder);
             }
         }
 
         @Override
         public int getCount() {
-            return 6;
+            return 5;
         }
 
     }

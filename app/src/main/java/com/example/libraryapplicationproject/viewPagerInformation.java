@@ -81,7 +81,6 @@ public class viewPagerInformation extends Fragment {
             tutorialTital.setText(mParam1);
             tutorialDescription.setText(mParam2);
             tutorialImage.setImageResource(mParam3);
-
         }
         return view;
     }
