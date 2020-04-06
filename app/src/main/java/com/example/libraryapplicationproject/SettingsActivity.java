@@ -12,6 +12,8 @@ import androidx.preference.Preference;
 public class SettingsActivity extends AppCompatActivity {
     public static boolean pictureSetting = false;
     public static boolean refreshSetting = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,10 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
 
 
+
+
     }
+
+
 
 }

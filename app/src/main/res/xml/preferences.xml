@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<PreferenceCategory android:title="Contact">
     <Preference
         app:key="feedback"
         app:summary="Contact the developers to give feedback!"
         app:title="Send feedback">
-
     </Preference>
 
+    <Preference
+        app:key="phone"
+        app:summary="Text us for a more in-depth discussion!"
+        app:title="Text the Developers">
+    </Preference>
+
+
+
+</PreferenceCategory>
+
+
+<PreferenceCategory android:title="Customization">
     <SwitchPreference
-    app:key="pictures"
-    app:title="Disable Book Covers"
-    app:defaultValue="false"
-    app:summaryOff="Off"
-    app:summaryOn="On">
-</SwitchPreference>
+        app:key="pictures"
+        app:title="Disable Book Covers"
+        app:defaultValue="false"
+        app:summaryOff="Off"
+        app:summaryOn="On">
+    </SwitchPreference>
 
     <SwitchPreference
         app:key="refresh"
@@ -24,6 +35,9 @@
         app:summaryOff="Once Per Launch"
         app:summaryOn="Always">
     </SwitchPreference>
+
+</PreferenceCategory>
+
 
 
 </PreferenceScreen>
