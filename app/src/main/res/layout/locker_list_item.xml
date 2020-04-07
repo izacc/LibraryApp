@@ -12,49 +12,52 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="213dp">
 
         <TextView
             android:id="@+id/bookName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:maxLines="1"
             android:text="BookName"
             android:textColor="@color/whiteColor"
             android:textSize="@dimen/bookName"
             app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintStart_toEndOf="@+id/bookImage"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/bookImage" />
 
         <TextView
             android:id="@+id/bookAuthor"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:minLines="1"
             android:text="Author"
             android:textColor="@color/whiteColor"
             android:textSize="@dimen/infoBook"
+            app:layout_constraintBottom_toTopOf="@+id/bookCategory"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/bookImage"
             app:layout_constraintTop_toBottomOf="@+id/bookName" />
 
         <TextView
-            android:id="@+id/bookDescription"
+            android:id="@+id/bookCategory"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="64dp"
-            android:text="Description"
+            android:minLines="1"
+            android:text="Category"
             android:textColor="@color/whiteColor"
             android:textSize="@dimen/infoBook"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/bookImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bookImage"
-            app:layout_constraintTop_toBottomOf="@+id/bookAuthor" />
+            app:layout_constraintStart_toEndOf="@+id/bookImage" />
 
         <ImageView
             android:id="@+id/deleteButton"

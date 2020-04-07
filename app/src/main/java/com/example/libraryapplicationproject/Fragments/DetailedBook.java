@@ -18,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.libraryapplicationproject.Adapters.CustomLockerAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.R;
@@ -36,6 +37,7 @@ public class DetailedBook extends Fragment {
     public String img = "";
     public String desc = "";
     public String URL = "";
+    public int rating = 1;
 
 
     public DetailedBook() {
@@ -49,6 +51,10 @@ public class DetailedBook extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
+        if (CustomLockerAdapter.clickedFromLocker){
+            favButton.setVisibility(View.INVISIBLE);
+            CustomLockerAdapter.clickedFromLocker = false;
+        }
         ImageView storeButton = view.findViewById(R.id.bookUrl);
         name = "N/A";
         author = "N/A";
@@ -58,7 +64,7 @@ public class DetailedBook extends Fragment {
         img = "N/A";
         desc = "N/A";
         URL = "";
-        int rating = 1;
+        rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
             name = data.getBookName();
@@ -74,7 +80,7 @@ public class DetailedBook extends Fragment {
          TextView bookName = view.findViewById(R.id.detailBookName);
          TextView bookAuthor = view.findViewById(R.id.detailBookAuthor);
          TextView bookPub = view.findViewById(R.id.detailBookPublisher);
-         TextView pubDate = view.findViewById(R.id.detailBookPubDate);
+         final TextView pubDate = view.findViewById(R.id.detailBookPubDate);
          TextView bookCat = view.findViewById(R.id.detailBookCat);
          ImageView bookImage = view.findViewById(R.id.detailBookImage);
          RatingBar bookRating = view.findViewById(R.id.ratingBar);
@@ -95,7 +101,7 @@ public class DetailedBook extends Fragment {
             @Override
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(getContext());
-                db.addBook(new BookData(name, author, desc, 0, img, category));
+                db.addBook(new BookData(name, author, category, publisher, date, img, desc, rating, URL));
 
                 Navigation.findNavController(view).navigate(R.id.locker);
             }

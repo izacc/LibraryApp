@@ -51,33 +51,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_NAME = "bookname";
     public static final String COLUMN_AUTHOR = "bookauthor";
+    public static final String COLUMN_CATEGORY = "category";
+    public static final String COLUMN_PUBLISHER = "publisher";
+    public static final String COLUMN_PUBLISHER_DATE = "publisher_date";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_WEBSITE= "website";
     public static final String COLUMN_IMAGE = "image";
-
+    public static final String COLUMN_RATING = "rating";
     /*
         Image table
      */
 
 
-    public static final String COLUMN_RESOURCE = "resource";
 
-
-    public static final String COLUMN_RATING = "rating";
-    public static final String COLUMN_READ = "is_read";
 
 
     public static final String CREATE_BOOK_TABLE = "CREATE TABLE " +
             TABLE_BOOK + "( " + BOOK_ID + " INTEGER PRIMARY KEY," +
-            COLUMN_NAME + " TEXT," + COLUMN_AUTHOR + " TEXT," + COLUMN_DESCRIPTION
-            + " TEXT," + COLUMN_RATING + " INTEGER," +  COLUMN_IMAGE + " TEXT," + COLUMN_WEBSITE + " TEXT);";
+            COLUMN_NAME + " TEXT," + COLUMN_AUTHOR + " TEXT," + COLUMN_CATEGORY + " TEXT," + COLUMN_PUBLISHER
+            + " TEXT," + COLUMN_PUBLISHER_DATE + " TEXT," + COLUMN_IMAGE + " TEXT," + COLUMN_DESCRIPTION
+            + " TEXT," + COLUMN_RATING  + " TEXT," + COLUMN_WEBSITE + " TEXT);";
 
-    public static final String CREATE_LOCKER_TABLE = "CREATE TABLE " +
-            TABLE_LOCKER + "( "  + BOOK_ID + " INTEGER," + "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
-
-    //Favorited books can exist without being added to the locker
-    public static final String CREATE_FAVORITES_TABLE = "CREATE TABLE " +
-            TABLE_FAVORITES + " ( "  + BOOK_ID + " INTEGER," +  "FOREIGN KEY" + "(" + BOOK_ID + ") REFERENCES " + TABLE_BOOK + "(" + BOOK_ID + ") );";
 
 
     public DatabaseHelper(Context context) {
@@ -87,8 +81,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_BOOK_TABLE);
-        db.execSQL(CREATE_LOCKER_TABLE);
-        db.execSQL(CREATE_FAVORITES_TABLE);
     }
 
     @Override
@@ -104,9 +96,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, book.getBookName());
         values.put(COLUMN_AUTHOR, book.getBookAuthor());
+        values.put(COLUMN_CATEGORY, book.getBookCat());
+        values.put(COLUMN_PUBLISHER, book.getBookPublisher());
+        values.put(COLUMN_PUBLISHER_DATE, book.getPublishedDate());
+        values.put(COLUMN_IMAGE, book.getBookImage());
         values.put(COLUMN_DESCRIPTION, book.getBookDescription());
         values.put(COLUMN_RATING, book.getBookRating());
-        values.put(COLUMN_IMAGE, book.getBookImage());
+        values.put(COLUMN_WEBSITE, book.getBookURL());
         db.insert(TABLE_BOOK, null, values);
         db.close();
     }
@@ -119,7 +115,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db  = this.getReadableDatabase();
         BookData book = null;
         Cursor cursor = db.query(TABLE_BOOK, new String[]{BOOK_ID,
-                        COLUMN_NAME, COLUMN_AUTHOR, COLUMN_DESCRIPTION, COLUMN_WEBSITE}, BOOK_ID + "= ?",
+                        COLUMN_NAME, COLUMN_AUTHOR, COLUMN_CATEGORY, COLUMN_PUBLISHER, COLUMN_PUBLISHER_DATE, COLUMN_IMAGE,
+                        COLUMN_DESCRIPTION, COLUMN_RATING, COLUMN_WEBSITE}, BOOK_ID + "= ?",
                 new String[]{String.valueOf(id)}, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -128,9 +125,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getInt(4),
+                    cursor.getString(4),
                     cursor.getString(5),
-                    cursor.getString(6));
+                    cursor.getString(6),
+                    cursor.getString(8),
+                    cursor.getInt(7),
+                    cursor.getString(9));
         }
         db.close();
         return book;
@@ -147,9 +147,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getInt(4),
+                    cursor.getString(4),
                     cursor.getString(5),
-                    cursor.getString(6)));
+                    cursor.getString(6),
+                    cursor.getString(8),
+                    cursor.getInt(7),
+                    cursor.getString(9)));
         }
         db.close();
         return books;
@@ -159,7 +162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     LOCKER TABLE READ STATEMENTS
      */
 
-    public ArrayList<BookData> getAllLockerBooks(){
+   /* public ArrayList<BookData> getAllLockerBooks(){
         SQLiteDatabase db  = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_FAVORITES + " ON " + TABLE_BOOK + "." + BOOK_ID +
                 "=" + TABLE_FAVORITES + "." + BOOK_ID,
@@ -201,9 +204,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return book;
     }
 
-    /*
+    *//*
         FAVOURITES TABLE READ STATEMENTS
-     */
+     *//*
 
     public ArrayList<BookData> getAllFavorites(){
         SQLiteDatabase db  = this.getReadableDatabase();
@@ -247,15 +250,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return book;
     }
 
-    /*
+    *//*
         Delete Statements
-     */
+     *//*
     public void deleteLockerItem(Integer book){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_LOCKER, BOOK_ID + " = ?",
                 new String[]{String.valueOf(book)});
         db.close();
-    }
+    }*/
 
     public void deleteBook(Integer book){
         SQLiteDatabase db = this.getWritableDatabase();
