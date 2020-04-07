@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    tools:context=".viewPagerInformation">
+
+    <ImageView
+        android:id="@+id/tutorialImage"
+        android:layout_width="151dp"
+        android:layout_height="181dp"
+        android:layout_gravity="center"
+        android:src="@drawable/placeholder" />
+
+    <TextView
+        android:id="@+id/titleTutorial"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_margin="@dimen/vpitemMargin"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/descriptionTutorial"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:layout_margin="@dimen/vpitemMargin"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+
+</LinearLayout>

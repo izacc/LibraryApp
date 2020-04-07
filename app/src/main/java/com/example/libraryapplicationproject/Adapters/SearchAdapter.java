@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,7 +58,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CustomSear
         if (item.getBookImage().isEmpty()) {
             holder.bookImage.setImageResource(R.drawable.placeholder);
         } else{
-            Picasso.get().load(item.getBookImage()).into(holder.bookImage);
+            if (SettingsActivity.pictureSetting) {
+                holder.bookImage.setImageResource(R.drawable.placeholder);
+            }else{
+                Picasso.get().load(item.getBookImage()).into(holder.bookImage);
+            }
+
+
         }
     }
     /**

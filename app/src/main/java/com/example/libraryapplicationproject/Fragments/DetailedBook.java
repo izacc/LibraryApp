@@ -18,7 +18,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.libraryapplicationproject.Adapters.CustomLockerAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.R;
@@ -37,6 +36,7 @@ public class DetailedBook extends Fragment {
     public String img = "";
     public String desc = "";
     public String URL = "";
+    public String previewURL = "";
     public int rating = 1;
 
 
@@ -56,6 +56,7 @@ public class DetailedBook extends Fragment {
             CustomLockerAdapter.clickedFromLocker = false;
         }
         ImageView storeButton = view.findViewById(R.id.bookUrl);
+        ImageView previewButton = view.findViewById(R.id.preview);
         name = "N/A";
         author = "N/A";
         publisher = "N/A";
@@ -64,6 +65,7 @@ public class DetailedBook extends Fragment {
         img = "N/A";
         desc = "N/A";
         URL = "";
+        previewURL = "";
         rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
@@ -75,12 +77,13 @@ public class DetailedBook extends Fragment {
             img = data.getBookImage();
             desc = data.getBookDescription();
             URL = data.getBookURL();
+            previewURL = data.getPreview();
             rating = data.getBookRating();
        }
          TextView bookName = view.findViewById(R.id.detailBookName);
          TextView bookAuthor = view.findViewById(R.id.detailBookAuthor);
          TextView bookPub = view.findViewById(R.id.detailBookPublisher);
-         final TextView pubDate = view.findViewById(R.id.detailBookPubDate);
+         TextView pubDate = view.findViewById(R.id.detailBookPubDate);
          TextView bookCat = view.findViewById(R.id.detailBookCat);
          ImageView bookImage = view.findViewById(R.id.detailBookImage);
          RatingBar bookRating = view.findViewById(R.id.ratingBar);
@@ -92,7 +95,14 @@ public class DetailedBook extends Fragment {
          pubDate.setText(date);
          bookCat.setText(category);
         if (img.isEmpty()) { bookImage.setImageResource(R.drawable.placeholder);}
-        else{ Picasso.get().load(img).into(bookImage);}
+        else{
+            if (SettingsActivity.pictureSetting) {
+                bookImage.setImageResource(R.drawable.placeholder);
+            }else{
+                Picasso.get().load(img).into(bookImage);
+            }
+
+            }
         bookRating.setRating(rating);
         bookDesc.setText(desc);
 
@@ -119,10 +129,22 @@ public class DetailedBook extends Fragment {
                         startActivity(intent);
                     }
                 }
+            }
+        });
 
+        previewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(previewURL.isEmpty()){
+                    Toast.makeText(getActivity(), "This book does not provide a preview",
+                            Toast.LENGTH_SHORT).show();
 
-
-
+                }else{
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(previewURL));
+                    if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
             }
         });
         return view;

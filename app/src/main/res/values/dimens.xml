@@ -11,4 +11,6 @@
     <dimen name="bottomNavHeight">50dp</dimen>
     <dimen name="cardElev">5dp</dimen>
     <dimen name="textPaddingForHomePageCat">5dp</dimen>
+    <dimen name="paddingtopVp">20dp</dimen>
+    <dimen name="vpitemMargin">5dp</dimen>
 </resources>
