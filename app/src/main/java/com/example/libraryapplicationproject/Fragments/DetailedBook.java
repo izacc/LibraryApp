@@ -18,9 +18,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.libraryapplicationproject.Adapters.CustomLockerAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 
