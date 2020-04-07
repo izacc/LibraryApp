@@ -247,15 +247,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                             .show();
                 }
             });
-            bookImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickedFromLocker = true;
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("information", books.get(getAdapterPosition()));
-                    Navigation.findNavController(view).navigate(R.id.action_locker_to_detailedBook,bundle);
-                }
-            });
+       
         }
 
         @Override
