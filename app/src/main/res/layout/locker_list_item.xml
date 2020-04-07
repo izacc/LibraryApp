@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="@color/colorPrimary"
-        app:cardElevation="1dp"
+        app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,9 +116,10 @@
         android:id="@+id/star1"
         android:layout_width="@dimen/starSize"
         android:layout_height="@dimen/starSize"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:elevation="@dimen/elevation"
-        app:layout_constraintEnd_toStartOf="@+id/star2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bookCategory"
         app:layout_constraintTop_toBottomOf="@+id/pubDate"
         app:srcCompat="@drawable/ic_star_white_24dp" />
@@ -129,7 +130,6 @@
         android:layout_height="@dimen/starSize"
         android:elevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="@+id/star1"
-        app:layout_constraintEnd_toStartOf="@+id/star3"
         app:layout_constraintStart_toEndOf="@+id/star1"
         app:layout_constraintTop_toTopOf="@+id/star1"
         app:srcCompat="@drawable/ic_star_white_24dp" />
@@ -140,7 +140,6 @@
         android:layout_height="@dimen/starSize"
         android:elevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="@+id/star2"
-        app:layout_constraintEnd_toStartOf="@+id/star4"
         app:layout_constraintStart_toEndOf="@+id/star2"
         app:layout_constraintTop_toTopOf="@+id/star2"
         app:srcCompat="@drawable/ic_star_white_24dp" />
