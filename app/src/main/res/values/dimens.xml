@@ -13,4 +13,6 @@
     <dimen name="textPaddingForHomePageCat">5dp</dimen>
     <dimen name="paddingtopVp">20dp</dimen>
     <dimen name="vpitemMargin">5dp</dimen>
+    <dimen name="lockerText">20sp</dimen>
+    <dimen name="starSize">30dp</dimen>
 </resources>
