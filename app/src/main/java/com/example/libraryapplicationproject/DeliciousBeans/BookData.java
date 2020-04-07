@@ -31,25 +31,32 @@ public class BookData implements Parcelable {
         this.bookURL = bookURL;
         this.preview = preview;
     }
-
-    public BookData(String bookName, String bookAuthor, String bookDescription, int bookRating, String bookImage, String bookURL) {
-        this.bookName = bookName;
+    public BookData(String bookName, String bookAuthor, String bookCat, String bookPublisher, String publishedDate, String bookImage, String bookDescription, int bookRating, String bookURL){
         this.bookAuthor = bookAuthor;
+        this.bookName = bookName;
+        this.bookCat = bookCat;
+        this.bookPublisher = bookPublisher;
+        this.publishedDate = publishedDate;
+        this.bookImage = bookImage;
         this.bookDescription = bookDescription;
         this.bookRating = bookRating;
-        this.bookImage = bookImage;
         this.bookURL = bookURL;
     }
 
-    public BookData(int bookID, String bookName, String bookAuthor, String bookDescription, int bookRating, String bookImage, String bookURL) {
-        this.bookName = bookName;
+    public BookData(int bookID, String bookName, String bookAuthor, String bookCat, String bookPublisher, String publishedDate, String bookImage, String bookDescription, int bookRating, String bookURL){
         this.bookID = bookID;
         this.bookAuthor = bookAuthor;
+        this.bookName = bookName;
+        this.bookCat = bookCat;
+        this.bookPublisher = bookPublisher;
+        this.publishedDate = publishedDate;
+        this.bookImage = bookImage;
         this.bookDescription = bookDescription;
         this.bookRating = bookRating;
         this.bookURL = bookURL;
-        this.bookImage = bookImage;
     }
+
+
 
     public String getPreview() {
         return preview;

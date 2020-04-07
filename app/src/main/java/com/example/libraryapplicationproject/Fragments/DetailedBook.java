@@ -18,9 +18,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.libraryapplicationproject.Adapters.CustomLockerAdapter;
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
 import com.example.libraryapplicationproject.DatabaseHelper;
 import com.example.libraryapplicationproject.R;
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 
@@ -37,6 +39,7 @@ public class DetailedBook extends Fragment {
     public String desc = "";
     public String URL = "";
     public String previewURL = "";
+    public int rating = 1;
 
 
     public DetailedBook() {
@@ -50,6 +53,10 @@ public class DetailedBook extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
+        if (CustomLockerAdapter.clickedFromLocker){
+            favButton.setVisibility(View.INVISIBLE);
+            CustomLockerAdapter.clickedFromLocker = false;
+        }
         ImageView storeButton = view.findViewById(R.id.bookUrl);
         ImageView previewButton = view.findViewById(R.id.preview);
         name = "N/A";
@@ -61,7 +68,7 @@ public class DetailedBook extends Fragment {
         desc = "N/A";
         URL = "";
         previewURL = "";
-        int rating = 1;
+        rating = 1;
          if (getArguments() != null){
            BookData data = getArguments().getParcelable("information");
             name = data.getBookName();
@@ -90,7 +97,14 @@ public class DetailedBook extends Fragment {
          pubDate.setText(date);
          bookCat.setText(category);
         if (img.isEmpty()) { bookImage.setImageResource(R.drawable.placeholder);}
-        else{ Picasso.get().load(img).into(bookImage);}
+        else{
+            if (SettingsActivity.pictureSetting) {
+                bookImage.setImageResource(R.drawable.placeholder);
+            }else{
+                Picasso.get().load(img).into(bookImage);
+            }
+
+            }
         bookRating.setRating(rating);
         bookDesc.setText(desc);
 
@@ -99,7 +113,7 @@ public class DetailedBook extends Fragment {
             @Override
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(getContext());
-                db.addBook(new BookData(name, author, desc, 0, img, category));
+                db.addBook(new BookData(name, author, category, publisher, date, img, desc, rating, URL));
 
                 Navigation.findNavController(view).navigate(R.id.locker);
             }

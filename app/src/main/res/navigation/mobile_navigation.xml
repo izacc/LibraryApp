@@ -22,7 +22,12 @@
         android:id="@+id/locker"
         android:name="com.example.libraryapplicationproject.Fragments.Locker"
         android:label="My Locker"
-        tools:layout="@layout/fragment_locker" />
+        tools:layout="@layout/fragment_locker" >
+        <action
+            android:id="@+id/action_locker_to_detailedBook"
+            app:destination="@+id/detailedBook"
+            app:popUpTo="@+id/locker" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchBook"

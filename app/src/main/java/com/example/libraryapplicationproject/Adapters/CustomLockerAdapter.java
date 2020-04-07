@@ -3,11 +3,14 @@ package com.example.libraryapplicationproject.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.libraryapplicationproject.SettingsActivity;
 import com.squareup.picasso.Picasso;
 
 import com.example.libraryapplicationproject.DatabaseHelper;
@@ -17,11 +20,12 @@ import com.example.libraryapplicationproject.R;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapter.CustomViewHolder> {
 
-
+    public static boolean clickedFromLocker = false;
     private ArrayList<BookData> books;
     private Context context;
 
@@ -46,12 +50,17 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
         final BookData book = books.get(position);
         holder.name.setText(book.getBookName());
         holder.author.setText(book.getBookAuthor());
-        holder.description.setText(book.getBookDescription());
+        holder.category.setText(book.getBookCat());
         //not properly grabbing the image url
         //placeholder for image
          if (book.bookImage.isEmpty()) { holder.bookImage.setImageResource(R.drawable.placeholder);}
                 else {
-             Picasso.get().load(book.bookImage).into(holder.bookImage);
+                    if (SettingsActivity.pictureSetting){
+                        holder.bookImage.setImageResource(R.drawable.placeholder);
+                    }else{
+                        Picasso.get().load(book.bookImage).into(holder.bookImage);
+                    }
+
          }
         holder.RatingSystemReader(book.getBookRating());
     }
@@ -67,7 +76,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
         protected TextView name;
         protected TextView author;
-        protected TextView description;
+        protected TextView category;
         protected ImageView bookImage;
         protected ImageView deleteButton;
         protected ImageView star1;
@@ -204,7 +213,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
             super(itemView);
             this.name = itemView.findViewById(R.id.bookName);
             this.author = itemView.findViewById(R.id.bookAuthor);
-            this.description = itemView.findViewById(R.id.bookDescription);
+            this.category = itemView.findViewById(R.id.bookCategory);
             this.bookImage = itemView.findViewById(R.id.bookImage);
             this.deleteButton = itemView.findViewById(R.id.deleteButton);
             this.star1 = itemView.findViewById(R.id.star1);
@@ -238,11 +247,20 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
                             .show();
                 }
             });
+            bookImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickedFromLocker = true;
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("information", books.get(getAdapterPosition()));
+                    Navigation.findNavController(view).navigate(R.id.action_locker_to_detailedBook,bundle);
+                }
+            });
         }
 
         @Override
-        public void onClick(View v) {
-            //Can add show more area here
+        public void onClick(View view) {
+
         }
     }
 }
