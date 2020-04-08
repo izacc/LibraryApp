@@ -27,9 +27,6 @@
       <connection connection-id="7c6ed5ee-f171-4025-bb0f-a9b7a0ad676e">
         <schema name="main" object-types="table, view" />
       </connection>
-      <connection connection-id="4fd5b159-8d0d-46e1-b996-14d339ea88ae">
-        <schema name="main" object-types="table, view" />
-      </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
@@ -37,7 +34,7 @@
       <console name="Connection" type="STANDARD" schema="main" session="Main">select * from book</console>
     </connection>
     <connection id="4fd5b159-8d0d-46e1-b996-14d339ea88ae">
-      <console name="Connection 1" type="STANDARD" schema="main" session="Main"><![CDATA[select * from book]]></console>
+      <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="3388ef6b-014d-447a-b294-bc0146dd0299">
       <console name="Connection 2" type="STANDARD" schema="" session="Main" />

@@ -22,6 +22,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Preference settings1 = findPreference("feedback");
         Preference settings4 = findPreference("phone");
+        Preference setting5 = findPreference("credits");
         final SharedPreferences settingPreferences = getActivity().getSharedPreferences("settings", MODE_PRIVATE);
         final SharedPreferences.Editor editor = settingPreferences.edit();
         final SwitchPreference settings2 = findPreference("pictures");
@@ -86,6 +87,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         };
 
+
         Preference.OnPreferenceClickListener clickListener2 = new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -101,10 +103,20 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         };
 
+        //PUT CODE IN HERE TO LAUNCH ACTIVITY ETC
+        Preference.OnPreferenceClickListener clickListener3 = new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+
+                return false;
+
+            }
+        };
 
 
 
 
+        setting5.setOnPreferenceClickListener(clickListener3);
         settings4.setOnPreferenceClickListener(clickListener2);
         settings3.setOnPreferenceChangeListener(changeListener2);
         settings2.setOnPreferenceChangeListener(changeListener);
