@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 import com.example.libraryapplicationproject.DeliciousBeans.BookData;
@@ -150,11 +151,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     cursor.getString(4),
                     cursor.getString(5),
                     cursor.getString(6),
-                    cursor.getString(8),
-                    cursor.getInt(7),
+                    cursor.getString(7),
+                    cursor.getInt(8),
                     cursor.getString(9)));
+
+
         }
         db.close();
+        Log.d("Hi", books.get(0).getBookRating() + "ff");
+        Log.d("Hi", books.get(1).getBookRating() + "hh");
+
         return books;
     }
 

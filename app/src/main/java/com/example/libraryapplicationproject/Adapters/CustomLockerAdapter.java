@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapter.CustomViewHolder> {
 
-    public static boolean clickedFromLocker = false;
     private ArrayList<BookData> books;
     private Context context;
 
@@ -66,6 +66,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
          }
         holder.RatingSystemReader(book.getBookRating());
+                Log.d("Hi", book.getBookRating() + "");
     }
 
     @Override
