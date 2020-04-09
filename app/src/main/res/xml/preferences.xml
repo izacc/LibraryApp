@@ -38,6 +38,18 @@
 
 </PreferenceCategory>
 
+    <PreferenceCategory android:title="Credits">
+
+        <Preference
+            app:key="credits"
+            app:title="Credits"
+            app:summary="Learn about the developing of this app!">
+
+        </Preference>
+
+    </PreferenceCategory>
+
+
 
 
 </PreferenceScreen>

@@ -6,9 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.libraryapplicationproject.MainActivity;
 import com.example.libraryapplicationproject.R;
 import com.example.libraryapplicationproject.SettingsActivity;
+import com.example.libraryapplicationproject.creditsActivity;
 
+import androidx.navigation.Navigation;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
@@ -22,6 +25,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Preference settings1 = findPreference("feedback");
         Preference settings4 = findPreference("phone");
+        Preference setting5 = findPreference("credits");
         final SharedPreferences settingPreferences = getActivity().getSharedPreferences("settings", MODE_PRIVATE);
         final SharedPreferences.Editor editor = settingPreferences.edit();
         final SwitchPreference settings2 = findPreference("pictures");
@@ -86,6 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         };
 
+
         Preference.OnPreferenceClickListener clickListener2 = new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -101,10 +106,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         };
 
+        //PUT CODE IN HERE TO LAUNCH ACTIVITY ETC
+        Preference.OnPreferenceClickListener clickListener3 = new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+
+                Intent intent = new Intent(getActivity(), creditsActivity.class);
+                startActivity(intent);
+                return false;
+
+            }
+        };
 
 
 
 
+        setting5.setOnPreferenceClickListener(clickListener3);
         settings4.setOnPreferenceClickListener(clickListener2);
         settings3.setOnPreferenceChangeListener(changeListener2);
         settings2.setOnPreferenceChangeListener(changeListener);
