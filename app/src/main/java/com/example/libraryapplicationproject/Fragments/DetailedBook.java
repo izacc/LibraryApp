@@ -53,10 +53,7 @@ public class DetailedBook extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_detailed_book, container, false);
         Button favButton = view.findViewById(R.id.favouritesButton);
-        if (CustomLockerAdapter.clickedFromLocker){
-            favButton.setVisibility(View.INVISIBLE);
-            CustomLockerAdapter.clickedFromLocker = false;
-        }
+
         ImageView storeButton = view.findViewById(R.id.bookUrl);
         ImageView previewButton = view.findViewById(R.id.preview);
         name = "N/A";

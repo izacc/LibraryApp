@@ -1,131 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
     android:orientation="vertical"
-    app:cardBackgroundColor="@color/colorPrimary"
-    app:cardCornerRadius="10dp"
-    app:cardUseCompatPadding="true">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="213dp">
 
-        <TextView
-            android:id="@+id/bookName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="8dp"
-            android:maxLines="1"
-            android:text="BookName"
-            android:textColor="@color/whiteColor"
-            android:textSize="@dimen/bookName"
-            app:layout_constraintEnd_toStartOf="@+id/deleteButton"
-            app:layout_constraintStart_toEndOf="@+id/bookImage"
-            app:layout_constraintTop_toTopOf="@+id/bookImage" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dbCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/bookAuthor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:minLines="1"
-            android:text="Author"
-            android:textColor="@color/whiteColor"
-            android:textSize="@dimen/infoBook"
-            app:layout_constraintBottom_toTopOf="@+id/bookCategory"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bookImage"
-            app:layout_constraintTop_toBottomOf="@+id/bookName" />
+    <TextView
+        android:id="@+id/bookName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="@dimen/elevation"
+        android:maxLines="3"
+        android:text="BookName"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/lockerText"
+        app:layout_constraintBottom_toTopOf="@+id/bookAuthor"
+        app:layout_constraintEnd_toEndOf="@+id/dbCard"
+        app:layout_constraintStart_toEndOf="@+id/bookImage"
+        app:layout_constraintTop_toBottomOf="@+id/deleteButton" />
 
-        <TextView
-            android:id="@+id/bookCategory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="8dp"
-            android:minLines="1"
-            android:text="Category"
-            android:textColor="@color/whiteColor"
-            android:textSize="@dimen/infoBook"
-            app:layout_constraintBottom_toBottomOf="@+id/bookImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bookImage" />
+    <TextView
+        android:id="@+id/bookAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="@dimen/elevation"
+        android:minLines="1"
+        android:text="Author"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/lockerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookImage"
+        app:layout_constraintTop_toBottomOf="@+id/bookName" />
 
-        <ImageView
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_cancel_white_24dp" />
+    <TextView
+        android:id="@+id/bookCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="@dimen/elevation"
+        android:minLines="1"
+        android:text="Category"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/lockerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookImage"
+        app:layout_constraintTop_toBottomOf="@+id/bookAuthor" />
 
-        <ImageView
-            android:id="@+id/bookImage"
-            android:layout_width="75dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="85dp"
-            android:layout_marginBottom="85dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/placeholder" />
 
-        <ImageView
-            android:id="@+id/star1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="107dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_star_white_24dp" />
+    <TextView
+        android:id="@+id/pubDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="@dimen/elevation"
+        android:minLines="1"
+        android:text="Date"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/lockerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookImage"
+        app:layout_constraintTop_toBottomOf="@+id/bookCategory" />
 
-        <ImageView
-            android:id="@+id/star2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star1"
-            app:srcCompat="@drawable/ic_star_white_24dp" />
+    <ImageView
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cancel_white_24dp" />
 
-        <ImageView
-            android:id="@+id/star3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star2"
-            app:srcCompat="@drawable/ic_star_white_24dp" />
+    <ImageView
+        android:id="@+id/bookImage"
+        android:layout_width="180dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="@id/dbCard"
+        app:layout_constraintStart_toStartOf="@id/dbCard"
+        app:layout_constraintTop_toTopOf="@+id/dbCard"
+        app:srcCompat="@drawable/placeholder" />
 
-        <ImageView
-            android:id="@+id/star4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star3"
-            app:srcCompat="@drawable/ic_star_white_24dp" />
+    <ImageView
+        android:id="@+id/star1"
+        android:layout_width="@dimen/starSize"
+        android:layout_height="@dimen/starSize"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bookCategory"
+        app:layout_constraintTop_toBottomOf="@+id/pubDate"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
 
-        <ImageView
-            android:id="@+id/star5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star4"
-            app:srcCompat="@drawable/ic_star_white_24dp" />
+    <ImageView
+        android:id="@+id/star2"
+        android:layout_width="@dimen/starSize"
+        android:layout_height="@dimen/starSize"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="@+id/star1"
+        app:layout_constraintStart_toEndOf="@+id/star1"
+        app:layout_constraintTop_toTopOf="@+id/star1"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/star3"
+        android:layout_width="@dimen/starSize"
+        android:layout_height="@dimen/starSize"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="@+id/star2"
+        app:layout_constraintStart_toEndOf="@+id/star2"
+        app:layout_constraintTop_toTopOf="@+id/star2"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
+
+    <ImageView
+        android:id="@+id/star4"
+        android:layout_width="@dimen/starSize"
+        android:layout_height="@dimen/starSize"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="@+id/star3"
+        app:layout_constraintStart_toEndOf="@+id/star3"
+        app:layout_constraintTop_toTopOf="@+id/star3"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
+
+    <ImageView
+        android:id="@+id/star5"
+        android:layout_width="@dimen/starSize"
+        android:layout_height="@dimen/starSize"
+        android:elevation="@dimen/elevation"
+        app:layout_constraintBottom_toBottomOf="@+id/star4"
+        app:layout_constraintStart_toEndOf="@+id/star4"
+        app:layout_constraintTop_toTopOf="@+id/star4"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
