@@ -109,6 +109,7 @@ public class DetailedBook extends Fragment {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rating = 0;
                 DatabaseHelper db = new DatabaseHelper(getContext());
                 db.addBook(new BookData(name, author, category, publisher, date, img, desc, rating, URL));
 

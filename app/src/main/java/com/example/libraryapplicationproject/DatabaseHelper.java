@@ -158,113 +158,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
         db.close();
-        Log.d("Hi", books.get(0).getBookRating() + "ff");
-        Log.d("Hi", books.get(1).getBookRating() + "hh");
 
         return books;
     }
 
-    /*
-    LOCKER TABLE READ STATEMENTS
-     */
 
-   /* public ArrayList<BookData> getAllLockerBooks(){
-        SQLiteDatabase db  = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_FAVORITES + " ON " + TABLE_BOOK + "." + BOOK_ID +
-                "=" + TABLE_FAVORITES + "." + BOOK_ID,
-                null);
-        ArrayList<BookData> books = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            books.add(new BookData(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getInt(4),
-                    cursor.getString(5),
-                    cursor.getString(6)));
-        }
-        db.close();
-        return books;
-    }
-
-    //This should work, unable to test
-    public BookData getLockerBook(int id){
-        SQLiteDatabase db  = this.getReadableDatabase();
-        BookData book = null;
-        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_FAVORITES + " ON " + TABLE_BOOK + "." + BOOK_ID +
-                        "=" + TABLE_FAVORITES + "." + BOOK_ID + " WHERE " + TABLE_FAVORITES + "." + BOOK_ID + " = " + id,
-                null);
-
-        if (cursor.moveToFirst()) {
-            book = new BookData(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getInt(4),
-                    cursor.getString(5),
-                    cursor.getString(6));
-        }
-        db.close();
-        return book;
-    }
-
-    *//*
-        FAVOURITES TABLE READ STATEMENTS
-     *//*
-
-    public ArrayList<BookData> getAllFavorites(){
-        SQLiteDatabase db  = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_LOCKER + " ON " + TABLE_BOOK + "." + BOOK_ID +
-                        "=" + TABLE_LOCKER + "." + BOOK_ID,
-                null);
-        ArrayList<BookData> books = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            books.add(new BookData(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getInt(4),
-                    cursor.getString(5),
-                    cursor.getString(6)));
-        }
-        db.close();
-        return books;
-    }
-
-    //This should work, unable to test
-    public BookData getFavoriteBook(int id){
-        SQLiteDatabase db  = this.getReadableDatabase();
-        BookData book = null;
-        Cursor cursor = db.rawQuery("SELECT " + TABLE_BOOK + ".*" + " FROM " + TABLE_BOOK + " INNER JOIN " + TABLE_LOCKER + " ON " + TABLE_BOOK + "." + BOOK_ID +
-                        "=" + TABLE_LOCKER + "." + BOOK_ID + " WHERE " + TABLE_LOCKER + "." + BOOK_ID + " = " + id,
-                null);
-
-        if (cursor.moveToFirst()) {
-            book = new BookData(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getInt(4),
-                    cursor.getString(5),
-                    cursor.getString(6));
-        }
-        db.close();
-        return book;
-    }
-
-    *//*
-        Delete Statements
-     *//*
-    public void deleteLockerItem(Integer book){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_LOCKER, BOOK_ID + " = ?",
-                new String[]{String.valueOf(book)});
-        db.close();
-    }*/
 
     public void deleteBook(Integer book){
         SQLiteDatabase db = this.getWritableDatabase();

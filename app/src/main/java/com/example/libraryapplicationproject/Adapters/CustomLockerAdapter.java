@@ -66,7 +66,7 @@ public class CustomLockerAdapter extends RecyclerView.Adapter<CustomLockerAdapte
 
          }
         holder.RatingSystemReader(book.getBookRating());
-                Log.d("Hi", book.getBookRating() + "");
+
     }
 
     @Override
