@@ -6,9 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.libraryapplicationproject.MainActivity;
 import com.example.libraryapplicationproject.R;
 import com.example.libraryapplicationproject.SettingsActivity;
+import com.example.libraryapplicationproject.creditsActivity;
 
+import androidx.navigation.Navigation;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
@@ -108,6 +111,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 
+                Intent intent = new Intent(getActivity(), creditsActivity.class);
+                startActivity(intent);
                 return false;
 
             }
